@@ -1,342 +1,149 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-.projetName {
-}
-.projectLo {
-  font-weight: 900;
-  text-align: left;
-
-  color: #364d79;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-}
-.down_info {
-  width: 100vh;
-  display: inline;
-  float: right;
-}
-.read {
-  width: max-content;
-  height: max-content;
-}
-
-/*login*/
-.components-form-demo-normal-login .login-form {
-  max-width: 300px;
-}
-.loginnn {
-  margin: 0;
-  padding-top: 28px;
-}
-.h1title {
-  color: #364d79;
-}
-
-.h3title {
-  color: black;
-}
-
-.ant-carousel .slick-slide {
-  text-align: center;
-  height: 250px;
-  line-height: 160px;
-  background: #364d79;
-  overflow: hidden;
-  width: max-content;
-}
-
-.titleerer {
-  border-top: gray solid 1px;
-  margin: 200px 0;
-  text-align: left;
-}
-.admin-wrapper {
-  display: flex;
-  height: calc(100%-66px);
-}
-
-a.exp:hover,
-a.exp:active {
-  textdecoration: "underline";
-}
-.searhcbar {
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: sans-serif;
-  text-align: center;
-}
-
-.makeit {
-  border: none;
-  border-radius: 50px;
-  outline: none;
-  width: 700px;
-  text-align: initial;
-  letter-spacing: 2px;
-}
-.search-btn {
-  height: 30px;
-  width: 100px;
-  border: none;
-  border-radius: 20px;
-}
-
-.bookt {
-  text-align: left;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-.small-descr {
-  text-justify: auto;
-  display: block;
-}
-.prov {
-  display: inline-table;
-}
 /*
-.ant-btn {
-  border: 2px solid red;
-  border-radius: 50px 20px;
-}*/
-.downl_btn {
-  background-color: DodgerBlue;
-  border: none;
-  color: white;
-  padding: 12px 30px;
-  cursor: pointer;
-  font-size: 20px;
-}
-.downl_btn:hover {
-  background-color: RoyalBlue;
-}
-.left-part {
-  width: 70vh;
-  height: 100%;
-}
-.left-part {
-  background-color: white;
-}
-.right-part {
-  background-color: #f2f2f2;
-  width: 130vh;
-  height: 100%;
-}
-.state_document {
-  background-color: snow;
-  width: 40vh;
-  height: 30vh;
-  margin-top: 10%;
-  margin-left: 10%;
-}
-tab,
-td,
-th {
-  border: 0.2px solid black;
-  width: 20;
+* Gcerevision Template
 
-  margin-top: none;
-}
-.title-book {
-  color: #364d79;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: "Times New Roman", Times, serif;
-  font-size: xx-large;
-  font-size: medium;
-  font-variant-position: super;
-}
-.tab_title {
-  color: #364d79;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: "Times New Roman", Times, serif;
-  font-size: medium;
-  font-variant-position: super;
-}
-.container {
-  max-width: 500 !important;
-  min-width: 500px;
-  max-height: 1000 px;
-  margin: auto;
-  margin-top: 4%;
-  font-family: sans-serif;
-  letter-spacing: 0p.5x;
-}
-.imchat {
-  max-width: 100%;
-  border-radius: 50%;
-}
-.imchat2 {
-  max-width: 500%;
-  border-radius: 50%;
-}
-
-/*height to mofifieD  after*/
-.msg-header {
-  border: 1px solid #ccc;
-  width: 500px;
-  height: 1%;
-  border-bottom: none;
-  display: inline-block;
-  background-color: #007bff;
-}
-.msg-header-img {
-  border-radius: 50%;
-  width: 40px;
-  margin-left: 5%;
-  margin-top: 12px;
-  float: left;
-}
-.active {
-  width: 120px;
-  float: left;
-  margin-top: 10px;
-}
-.active h4 {
-  font-size: 20px;
-  margin-left: 10px;
-  color: #fff;
-}
-.active h6 {
-  font-size: 10px;
-  margin-left: 10px;
-  line-height: 2px;
-  color: #fff;
-}
-.chat-page {
-  padding: 0 0 50px 0;
-}
-/*ajout de with*/
-.msg-inbox {
-  border: 1px solid #ccc;
-  overflow: hidden;
-  padding-bottom: 30px;
-}
-/**/
-/*re look aftersurtout le top (first)*/
-.chats {
-  padding: 30px 15px 0 25px;
-}
-.msg-page {
-  height: 516px;
-  overflow-y: auto;
-}
-.received-chats-img {
-  display: inline-block;
-  width: 20px;
-  float: left;
-}
-
-.received-msg {
-  display: inline-block;
-  padding-bottom: 0 0 0 10px;
-  vertical-align: top;
-  width: 92%;
-}
-.received-msg-inbox {
-  width: 57%;
-}
-.received-msg-inbox p {
-  background-color: #efefef none repeat scroll 0 0;
-  border-radius: 40px;
-  color: #646464;
-  font-size: 14px;
-  margin: 0;
-  padding: 5px 10px 5px 12px;
-  width: 100%;
-}
-.time {
-  color: #777;
-  display: block;
-  font-size: 12px;
-  margin: 8px 0 0;
-}
-.outgoing-chats {
-  overflow: hidden;
-  margin: 26px 20px;
-}
-.outgoing-chats-msg p {
-  background-color: #007bff none repeat scroll 0 0;
-  color: red;
-  border-radius: 10px;
-  font-size: 14px;
-  margin: 0;
-  color: black;
-  padding: 5px 10px 5px 12px;
-  width: 100%;
-}
-
-.outgoing-chats-msg {
-  float: left;
-  width: 46%;
-  margin-left: 45%;
-}
-.outgoing-chats-img {
-  display: inline-block;
-  width: 20px;
-  float: right;
-}
-.input-group {
-  float: right;
-  margin-top: 13px;
-  margin-right: 20px;
-  outline: none !important;
-  border-radius: 61% !important;
-  background-color: #fff;
-  color: #007bff;
-}
-.form-control {
-  border: none !important;
-  border-radius: 20px !important;
-}
-.input-group-text {
-  background: transparent;
-  border: none !important;
-}
-.form-control:focus {
-  border-color: none !important;
-  box-shadow: none !important;
-  border-radius: 20px;
-}
-/*.footer {
-  max-width: 140px;
-  margin: 40px auto 0 auto 0;
-  display: flex;
-
-}
-
-.call-out {
-  width: 100;
-  height: 199;
-  padding: 20px;
-  margin-bottom: 20px;
-  flex: 1;
-  margin-right: 100px;
-}
-
-.call-out:nth-child(2) {
-  background-color: red;
-}
-.call-out:nth-child(3) {
-  background-color: bisque;
-}
-.call-out:nth-child(4) {
-  background-color: black;
-}
-.call-out:nth-child(5) {
-  background-color: bisque;
-}
 */
+/* ------------------------------------- */
+/* TABLE OF CONTENTS
+/* -------------------------------------
+  1. IMPORT GOOGLE FONTS
+  2. GENERAL
+    -2.1 SECTION TITLE
+    -2.2 BUTTONS
+    -2.3 SOCIAL ICON
+    -2.4 PRE LOADER
+    -2.5 SCROLL TO UP
+  3. NAVBAR
+  4. INTRO SECTION
+  4. HERO SECTION
+  5. RESTAURANT SECTION
+  6. DELIVERY SECTION
+  7. FOOTER SECTION
+  ------------------------------------- */
+/* ==========================================================================
+   1. IMPORT GOOGLE FONTS
+   ========================================================================== */
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+.background-one {
+  color: #fff;
+  background-color: #70c9ed;
+}
+
+.background-one:hover {
+  color: #000;
+}
+
+.background-one:hover h3 {
+  color: #000 !important;
+}
+
+.background-two {
+  color: #fff;
+  background-color: #fe7b51;
+}
+.background-two:hover {
+  color: #000;
+  background-color: #fe7b51;
+}
+.background-two:hover h3 {
+  color: #000 !important;
+}
+.background-three {
+  color: #fff;
+  background-color: #8cc7a6;
+}
+.background-three:hover h3 {
+  color: #000 !important;
+}
+
+.background-three:hover {
+  color: #000;
+  background-color: #fff;
+}
+.background-four {
+  color: #fff;
+  background-color: #c43559;
+}
+.background-four:hover {
+  color: #000;
+  background-color: #c43559;
+}
+.background-four:hover h3 {
+  color: #000 !important;
+}
+
+.background-five {
+  color: #fff;
+  background-color: #f4da22;
+}
+.background-five:hover {
+  color: #000;
+  background-color: #fff;
+}
+
+.background-five:hover h3 {
+  color: #000 !important;
+}
+
+.color-is-white {
+  color: #fff;
+}
+
+.color-is-primary {
+  color: #70c9ed;
+}
+
+.color-is-black {
+  color: #000 !important;
+}
+
+.button-border {
+  border-radius: 5px;
+}
+.color-is-test {
+  background-color: #fe7b51;
+
+  color: #fff;
+}
+.uk-overlay-primary-second {
+  background-color: #70c9ed;
+  opacity: 0.4;
+}
+
+/* ==========================================================================
+        1. Header
+        ========================================================================== */
+
+.bg-header-color {
+  background-color: #fff !important;
+  color: #fff;
+}
+
+.uk-navbar-nav > li > a {
+  color: #000;
+  text-transform: uppercase;
+  transition: 0.1s ease-in-out;
+  transition-property: all;
+  transition-property: color, background-color;
+  font-size: 16px;
+}
+
+.uk-countdown-number {
+  font-size: 1rem;
+}
+
+.uk-countdown-separator {
+  font-size: 1rem;
+}
+
+.section-cat h3 {
+  color: #fff !important;
+}
+.section-cat h3 {
+  color: #fff !important;
+}
+.background-color-white {
+  background-color: #fff !important;
+}

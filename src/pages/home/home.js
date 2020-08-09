@@ -1,407 +1,165 @@
 import React from "react";
-
-import { Layout, Button, Form, Input, Checkbox } from "antd";
-import { Card, Col, Row } from "antd";
-import { Carousel } from "antd";
-import { Link } from "react-router-dom";
-
-import { AudioOutlined } from "@ant-design/icons";
-
-const { Search } = Input;
-const suffix = (
-  <AudioOutlined
-    style={{
-      fontSize: 30,
-      color: "#1890ff",
-    }}
-  />
-);
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 function Home() {
-  const { Header, Footer, Content } = Layout;
-
   return (
-    <div className="home">
-      <div className="searhcbar">
-        <Search
-          className="makeit"
-          placeholder="search for books,articles and more..."
-          onSearch={(value) => console.log(value)}
-          enterButton
-        />
-      </div>
-      <div className="App-slider">
-        <Carousel autoplay="true " effect="fade">
-          <div>
-            <img
-              class="d-block w-80"
-              src="https://mdbootstrap.com/img/Photos/Slides/img%20(88).jpg"
-              alt="First slide"
-            ></img>
-          </div>
-          <div>
-            <img
-              class="d-block w-80"
-              src="./imfond.jpg"
-              alt="Second slide"
-            ></img>
-          </div>
-          <div>
-            <img
-              class="d-block w-80"
-              src="https://mdbootstrap.com/img/Photos/Slides/img%20(31).jpg"
-              alt="Third slide"
-            ></img>
-          </div>
-          <div>
-            <img
-              class="d-block w-80"
-              src="https://mdbootstrap.com/img/Photos/Others/Carousel-thumbs/img%20(88).jpg"
-              alt="four slide"
-            ></img>
-          </div>
-        </Carousel>
-        ,
-        <div className="site card">
-          <Row gutter={[6, 6]} justify="center">
-            <Col span={6}>
-              <div className="prov">
-                <Card bordered={true} size="small" hoverable="true">
-                  <div className="im">
-                    {<img alt="example" src="./imo.png" />}
-                  </div>
+    <React.Fragment>
+      <section
+        class="uk-section"
+        style={{ paddingTop: " 0px", paddingBottom: "0px" }}
+      >
+        <div
+          class="uk-position-relative uk-visible-toggle uk-dark"
+          data-tabindex="-1"
+          data-uk-slideshow="min-height: 300; max-height: 450"
+        >
+          <ul class="uk-slideshow-items">
+            <li>
+              <img
+                src="https://source.unsplash.com/random"
+                alt=""
+                data-uk-cover
+              />
+            </li>
+            <li>
+              <img
+                src="https://source.unsplash.com/random"
+                alt=""
+                data-uk-cover
+              />
+            </li>
+          </ul>
 
-                  <div>
-                    <h3 className="bookt">Book Title</h3>
-                    <div className="small-descrp">
-                      <p>
-                        small desciption of this book small desciption of this
-                        book small desciption of this book
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="card-action"
-                    style={{
-                      padding: 5,
-                      margin: 0,
-                      minHeight: 0,
-                    }}
-                  >
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      className="login-form-button"
-                      shape="circle"
-                    >
-                      <Link to={`/readbook`} activeClassName="current">
-                        Read
-                      </Link>
-                    </Button>
-                  </div>
-                </Card>
-              </div>
-            </Col>
-            <Col span={6}>
-              <div className="prov">
-                <Card bordered={false} size="small" hoverable="true">
-                  <div className="im">
-                    {<img alt="example" src="./imo.png" />}
-                  </div>
-
-                  <div>
-                    <h3 className="bookt">Book Title</h3>
-                    <div className="small-descrp">
-                      <p>
-                        small desciption of this book small desciption of this
-                        book small desciption of this book
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="card-action"
-                    style={{
-                      padding: 5,
-                      margin: 0,
-                      minHeight: 0,
-                    }}
-                  >
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      className="login-form-button"
-                      shape="circle"
-                    >
-                      <Link to={`/readbook`} activeClassName="current">
-                        Read
-                      </Link>
-                    </Button>
-                  </div>
-                </Card>
-              </div>
-            </Col>
-            <Col span={6}>
-              <div className="prov">
-                <Card bordered={false} size="small" hoverable="true">
-                  <div className="im">
-                    {<img alt="example" src="./imo.png" />}
-                  </div>
-
-                  <div>
-                    <h3 className="bookt">Book Title</h3>
-                    <div className="small-descrp">
-                      <p>
-                        small desciption of this book small desciption of this
-                        book small desciption of this book
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="card-action"
-                    style={{
-                      padding: 5,
-                      margin: 0,
-                      minHeight: 0,
-                    }}
-                  >
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      className="login-form-button"
-                      shape="circle"
-                    >
-                      <Link to={`/readbook`} activeClassName="current">
-                        Read
-                      </Link>
-                    </Button>
-                  </div>
-                </Card>
-              </div>
-            </Col>
-            <Col span={6}>
-              <div className="prov">
-                <Card bordered={false} size="small" hoverable="true">
-                  <div className="im">
-                    {<img alt="example" src="./imo.png" />}
-                  </div>
-
-                  <div>
-                    <h3 className="bookt">Book Title</h3>
-                    <div className="small-descrp">
-                      <p>
-                        small desciption of this book small desciption of this
-                        book small desciption of this book
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="card-action"
-                    style={{
-                      padding: 5,
-                      margin: 0,
-                      minHeight: 0,
-                    }}
-                  >
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      className="login-form-button"
-                      shape="circle"
-                    >
-                      <Link to={`/readbook`} activeClassName="current">
-                        Read
-                      </Link>
-                    </Button>
-                  </div>
-                </Card>
-              </div>
-            </Col>
-          </Row>
-          <Row gutter={[6, 6]} justify="center">
-            <Col span={6}>
-              <div className="prov">
-                <Card bordered={false} size="small" hoverable="true">
-                  <div className="im">
-                    {<img alt="example" src="./imo.png" />}
-                  </div>
-
-                  <div>
-                    <h3 className="bookt">Book Title</h3>
-                    <div className="small-descrp">
-                      <p>
-                        small desciption of this book small desciption of this
-                        book small desciption of this book
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="card-action"
-                    style={{
-                      padding: 5,
-                      margin: 0,
-                      minHeight: 0,
-                    }}
-                  >
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      className="login-form-button"
-                    >
-                      <Link to={`/more`} activeClassName="current">
-                        Riserve
-                      </Link>
-                    </Button>
-                  </div>
-                </Card>
-              </div>
-            </Col>
-            <Col span={6}>
-              <div className="prov">
-                <Card bordered={false} size="small" hoverable="true">
-                  <div className="im">
-                    {<img alt="example" src="./imo.png" />}
-                  </div>
-
-                  <div>
-                    <h3 className="bookt">Book Title</h3>
-                    <div className="small-descrp">
-                      <p>
-                        small desciption of this book small desciption of this
-                        book small desciption of this book
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="card-action"
-                    style={{
-                      padding: 5,
-                      margin: 0,
-                      minHeight: 0,
-                    }}
-                  >
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      className="login-form-button"
-                    >
-                      <Link to={`/more`} activeClassName="current">
-                        Riserve
-                      </Link>
-                    </Button>
-                  </div>
-                </Card>
-              </div>
-            </Col>
-            <Col span={6}>
-              <div className="prov">
-                <Card bordered={false} size="small" hoverable="true">
-                  <div className="im">
-                    {<img alt="example" src="./imo.png" />}
-                  </div>
-
-                  <div>
-                    <h3 className="bookt">Book Title</h3>
-                    <div className="small-descrp">
-                      <p>
-                        small desciption of this book small desciption of this
-                        book small desciption of this book
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="card-action"
-                    style={{
-                      padding: 5,
-                      margin: 0,
-                      minHeight: 0,
-                    }}
-                  >
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      className="login-form-button"
-                    >
-                      <Link to={`/more`} activeClassName="current">
-                        Riserve
-                      </Link>
-                    </Button>
-                  </div>
-                </Card>
-              </div>
-            </Col>
-            <Col span={6}>
-              <div className="prov">
-                <Card bordered={false} size="small" hoverable="true">
-                  <div className="im">
-                    {<img alt="example" src="./imo.png" />}
-                  </div>
-
-                  <div>
-                    <h3 className="bookt">Book Title</h3>
-                    <div className="small-descrp">
-                      <p>
-                        small desciption of this book small desciption of this
-                        book small desciption of this book
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="card-action"
-                    style={{
-                      padding: 5,
-                      margin: 0,
-                      minHeight: 0,
-                    }}
-                  >
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      className="login-form-button"
-                    >
-                      <Link to={`/more`} activeClassName="current">
-                        Riserve
-                      </Link>
-                    </Button>
-                  </div>
-                </Card>
-              </div>
-            </Col>
-          </Row>
+          <a
+            class="uk-position-center-left uk-position-small"
+            href="#"
+            data-uk-slidenav-previous
+            data-uk-slideshow-item="previous"
+          ></a>
+          <a
+            class="uk-position-center-right uk-position-small"
+            href="#"
+            data-uk-slidenav-next
+            data-uk-slideshow-item="next"
+          ></a>
         </div>
-      </div>
-    </div>
+      </section>
+
+      <section class="uk-section">
+        <div class="uk-container">
+          <div
+            class="uk-tile uk-tile-default uk-text-center uk-margin"
+            style={{ paddingTop: "0px", paddingBottom: "0px" }}
+          >
+            <h2 class="uk-h1">Welcome to our courses bibotech</h2>
+          </div>
+
+          <div class="uk-flex-center" data-uk-grid>
+            <div class="uk-width-auto@m">
+              <div class="uk-text-center uk-margin-medium-bottom uk-margin-medium-top">
+                <form class="uk-search uk-search-default uk-search-large">
+                  <span uk-search-icon></span>
+                  <input
+                    class="uk-search-input uk-form-large uk-form-width-small"
+                    style={{ fontSize: "14px" }}
+                    type="search"
+                    placeholder="Type something"
+                  />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="uk-section uk-margin uk-section-small">
+        <div class="uk-container">
+          <h2 class="uk-h2 uk-text-lead color-is-black uk-margin-medium-bottom">
+            Latest Books
+          </h2>
+          <h4 class="uk-text-meta uk-margin-medium-bottom">
+            Select the latest book found in our B
+          </h4>
+
+          <div class="uk-text-center" data-uk-grid>
+            <div class="uk-width-1-4@m">
+              <Link to="/book">
+                <div class="uk-inline uk-transition-toggle" tabindex="0">
+                  <img src="https://source.unsplash.com/random" alt="" />
+                  <div class="uk-transition-slide-bottom uk-overlay uk-overlay-primary uk-position-bottom">
+                    <p class="uk-h4">
+                      Intermediate Physics For Ordinary Level – Third Edition.
+                    </p>
+                    <p class="uk-h4">9000 CFA</p>
+                  </div>
+                </div>
+              </Link>
+            </div>
+
+            <div class="uk-width-1-4@m">
+              <div class="uk-inline uk-transition-toggle" data-tabindex="0">
+                <img src="https://source.unsplash.com/random" alt="" />
+                <div class="uk-transition-slide-bottom uk-overlay uk-overlay-primary uk-position-bottom">
+                  <p class="uk-h4">
+                    Intermediate Physics For Ordinary Level – Third Edition.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="uk-width-1-4@m">
+              <div class="uk-inline uk-transition-toggle" tabindex="0">
+                <img src="https://source.unsplash.com/random" alt="" />
+                <div class="uk-transition-slide-bottom uk-overlay uk-overlay-primary uk-position-bottom">
+                  <p class="uk-h4">
+                    Intermediate Physics For Ordinary Level – Third Edition.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="uk-width-1-4@m">
+              <div class="uk-inline uk-transition-toggle" tabindex="0">
+                <img src="https://source.unsplash.com/random" alt="" />
+                <div class="uk-transition-slide-bottom uk-overlay uk-overlay-primary uk-position-bottom">
+                  <p class="uk-h4">
+                    Intermediate Physics For Ordinary Level – Third Edition.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="uk-section uk-section-primary uk-section-small">
+        <div class="uk-container">
+          <div class="uk-child-width-expand@s uk-light" data-uk-grid>
+            <div class="uk-width-auto@m">
+              <img
+                src="https://source.unsplash.com/random"
+                width="300px"
+                alt=""
+              />
+            </div>
+            <div class="uk-width-expand@m">
+              <h3>Are you a student ?</h3>
+              <p class="color-is-white">
+                Register now to our Bibotech and browser thousand s of books
+                <br />
+                Join us now
+              </p>
+              <br />
+
+              <a class="uk-button uk-button-default uk-margin-small" href="#">
+                Register now
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </React.Fragment>
   );
 }
 
 export default Home;
-
-/*<Link to={`/`} activeClassName="current">
-home
-</Link>
-*/
-/*
- <form>
-        <div className="searhcbar">
-          <div className="search_box">
-            <Form.Item
-              name="search"
-              rules={[
-                {
-                  required: true,
-                  message: "find your book her!",
-                },
-              ]}
-            >
-              <Input
-                className="makeit"
-                placeholder=" find your book her....."
-              />
-            </Form.Item>
-            <Form.Item>
-              <Button type="primary" htmlType="submit" className="search-btn">
-                Search
-              </Button>
-            </Form.Item>
-          </div>
-        </div>
-      </form>*/

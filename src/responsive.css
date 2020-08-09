@@ -1,0 +1,35 @@
+/*
+* Mate - Bluma Fungry Template Responsive css
+
+      
+
+
+
+/*
+    small-mobile: from to 360px
+    mobile: up to 768px
+    tablet: from 769px
+    desktop: from 1024px
+    widescreen: from 1216px
+    fullhd: from 1408px
+*/
+
+/* On screens that are 1408px wide or less */
+@media screen and (max-width: 1408px) {
+}
+
+/* On screens that are 1216px wide or less */
+@media screen and (max-width: 1216px) {
+}
+
+/* On screens that are 1024px wide or less */
+@media screen and (max-width: 1024px) {
+}
+
+/* On screens that are 992px wide or less */
+@media screen and (max-width: 768px) {
+}
+
+/* On screens that are px wide or less */
+@media screen and (max-width: 360px) {
+}
