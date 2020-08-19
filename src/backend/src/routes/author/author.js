@@ -72,7 +72,7 @@ router.put('/:id',(req,res)=>{
     })
     try {
         author=Author.findById(req.params.id)
-        const newAuthor = await author.save()
+      /*const newAuthor = await author.save() */  
         //res.redirect('author/${newAthor.id}')
         res.redirect('/all_actor')
     } catch (error) {

@@ -1,16 +1,20 @@
 var express = require("express");
 const router = express.Router();
 
-const BorrowController = require("../../controllers/Borrowcontrolers/borrowController");
+
+
+
+//const { borrowBook, returnBook } = BorrowController;
+    
+
+const borrowController = require("../../controllers/Borrowcontrolers/borrowController");
 
 const authenticate = require("../../middlleware/authenticate");
 
 //create borrow
 
-router.post("/borroow", borrowController.borrow);
-
-//returned boook
-
-router.post("/login", borrowController.returned);
+router.put('/users/:userId/books',  borrowController.returnBook);
+  
+  router.post('/users/:userId/books', borrowController.borrowBook);
 
 module.exports = router;

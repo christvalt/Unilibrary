@@ -62,18 +62,8 @@ router.delete('/delete/:imagename',function (req, res) {
             return res.status(400).send(err);
           }
       }
-      
-   
-   
 
-      
- 
 });
-
-
-
-
-
 module.exports = router;
 
 

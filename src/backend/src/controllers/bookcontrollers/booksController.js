@@ -1,10 +1,32 @@
 var mongoose = require("mongoose");
 const express = require("express");
 
-Book = require("../../models/bookmodel/bookModel")(mongoose);
+
+const u = require("../../routes/uploadroute/u");
+const Book = require("../../models/bookmodel/bookModel");
 const router = express.Router();
 
+
+
+//new book
+router.get('/new',async(req,res)=>{
+  try {
+    const authors= await authors.find({})
+    const book = new Book()
+    res.render('',{
+      authors:authors,
+      book:book
+    })
+    
+  } catch {
+    res.redirect('')
+    
+  }
+
+})
+
 const list_books = (req, res) => {
+  // console.log("enetered");
   Book.find({}, function (err, book) {
     if (err) res.send(err);
     res.json(book);
@@ -27,16 +49,27 @@ const read_book = (req, res) => {
     }
   });
 };
+//req.body can be thi
+/*
+ const new book =new Book ({
+   title=req.body.title,
+   author=req.body.author,
+   publishdate =new  Date(req.body.publishdate),
+   pagecount =req.body.pagecount,
+   description=req.body.desriptioin,
 
+ })
+*/
 const create_book = (req, res) => {
   var new_book = new Book(req.body);
+  console.log(new_book);
   new_book.save(function (err, book) {
     if (err) res.send(err);
     res.status(201).json(book);
   });
 };
 
-/*exports.update_book = function (req, res) {
+const update_book = (req, res) => {
   Book.findOneAndUpdate(
     { _id: req.params.id },
     req.body,
@@ -54,9 +87,9 @@ const create_book = (req, res) => {
       }
     }
   );
-};*/
+};
 
-/*exports.delete_book = function (req, res) {
+const delete_book = (req, res) => {
   Book.deleteOne({ _id: req.params.id }, function (err, result) {
     if (err) res.send(err);
     else {
@@ -69,7 +102,7 @@ const create_book = (req, res) => {
       }
     }
   });
-};*/
+};
 
 //module.exports = router;
 
@@ -77,4 +110,6 @@ module.exports = {
   list_books,
   create_book,
   read_book,
+  update_book,
+  delete_book,
 };

@@ -22,7 +22,7 @@ const register = (req, res, next) => {
       .save()
       .then((user) => {
         res.json({
-          message: "useer added succesfully",
+          message: "User added succesfully",
         });
       })
       .catch((error) => {
@@ -47,7 +47,7 @@ const login = (req, res, next) => {
             });
           }
           if (result) {
-            let token = jwt.sign({ name: user.name }, "verySecretValue", {
+            let token = jwt.sign({ name: user.name }, "AZQ,PI)0(", {
               expiresIn: "1h",
             });
             res.json({
@@ -55,9 +55,7 @@ const login = (req, res, next) => {
               token,
             });
           } else {
-            res.json({
-              message: "password does not matched",
-            });
+            
           }
         });
       } else {
@@ -68,8 +66,34 @@ const login = (req, res, next) => {
     }
   );
 };
+const logout = async (req, res) => {
+  try {
+    req.user.tokens = req.user.tokens.filter((token) => {
+      return token.token != req.token;
+    });
+    await req.user.save();
+    res.send();
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+/*
+router.post('/users/me/logout', auth, async (req, res) => {
+    // Log user out of the application
+    try {
+        req.user.tokens = req.user.tokens.filter((token) => {
+            return token.token != req.token
+        })
+        await req.user.save()
+        res.send()
+    } catch (error) {
+        res.status(500).send(error)
+    }
+})
+ */
 
 module.exports = {
   register,
   login,
+  logout,
 };
