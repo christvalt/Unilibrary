@@ -35,7 +35,8 @@ const list_books = (req, res) => {
 const read_book = (req, res) => {
   /*
 	TODO cast req.params.id to ObjectId
-	*/
+  */
+  console.log(req),
   Book.findById(req.params.id, function (err, book) {
     if (err) res.send(err);
     else {

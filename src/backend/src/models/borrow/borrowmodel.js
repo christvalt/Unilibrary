@@ -4,15 +4,12 @@ const Schema = mongoose.Schema;
 
 var Borrowschema = new Schema({
 
-  idbook: {
-    type: String,
-    required: true,
-  },
-  iduser: {
-    type: Number,
-    required: true,
-  },
-  Boorowingdate: {
+  bookId: {        
+      ref: 'book',
+      type: Schema.Types.ObjectId   
+  }, 
+ 
+  boorowingdate: {
     type: Date,
     required: true,
   },
@@ -25,25 +22,33 @@ var Borrowschema = new Schema({
     allowNull: false,
   },
 
+  quantity: {
+    type: Number,
+    
+  },
 
+
+  userId: [{
+    ref: 'user',
+      type: Schema.Types.ObjectId   
+  }, ]
 });
 
-/*Boorow.associate = (models) => {
-    Borrow.belongsTo(models.Book, {
-        //trouver l'equivalent en mogo
-      foreignKey: 'bookId',
-      as: 'book',
-      onDelete: 'CASCADE',
-    });
-    Borrow.belongsTo(models.User, {
-      foreignKey: 'userId',
-      as: 'user',
-      onDelete: 'CASCADE',
-    });
-  };
- */
+
+ 
 
 const Boorow = mongoose.model("Borrowmodel", Borrowschema);
 
 module.exports = Boorow;
 
+
+
+
+/*companyId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {         // User belongsTo Company 1:1
+          model: 'borrow',
+          key: 'id'
+        }
+      }, */
