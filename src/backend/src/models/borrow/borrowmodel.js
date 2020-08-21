@@ -4,11 +4,14 @@ const Schema = mongoose.Schema;
 
 var Borrowschema = new Schema({
 
+  returned: {
+    type: Boolean,
+    defaul: false,
+  },
   bookId: {        
       ref: 'book',
       type: Schema.Types.ObjectId   
-  }, 
- 
+  },  
   boorowingdate: {
     type: Date,
     required: true,
@@ -21,21 +24,15 @@ var Borrowschema = new Schema({
     type: Date,
     allowNull: false,
   },
-
   quantity: {
-    type: Number,
-    
+    type: Number,    
   },
-
-
   userId: [{
     ref: 'user',
       type: Schema.Types.ObjectId   
   }, ]
+  
 });
-
-
- 
 
 const Boorow = mongoose.model("Borrowmodel", Borrowschema);
 
