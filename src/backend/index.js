@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 var multer = require("multer");
+var cors = require('cors')
 
 //const path = require("path");
 //need to delete file
@@ -42,7 +43,7 @@ mongoose
   .then(() => console.log("MongoDB successfully connected"))
   .catch((err) => console.log(err));
 
-
+app.use(cors());
 app.use("/AuthRoute", AuthRoute);
 app.use("/BookRoute", BookRoute);
 app.use("/profiles", pro);
