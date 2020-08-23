@@ -9,7 +9,7 @@ function SignIn() {
   useEffect(()=>{
 setDate([1])
   },[0])
-  const   sumit=() =>{
+  const sumit=() =>{
     console.log('username',username)
     console.log('password',password)
 
@@ -18,27 +18,17 @@ setDate([1])
       "password": password,
   }
 
-
-    fetch("http://localhost:5000/AuthRoute/login", {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
+  axios . post ( '/ login' ,  { 
     
-      //make sure to serialize your JSON body
-      body:  JSON.stringify(data)
-    })
-    .then(r =>  r.json())
-    .then( (response) => { 
-      console.log(response)
-       //do something awesome that makes the world a better place
-    }).catch((response)=>{
-      console.log(response)
-     
-    });
+   data
+ }) 
+ . then ( ( réponse )  =>  { 
+   console . log ( réponse ); 
+ },  ( erreur )  =>  { 
+   console . log ( erreur ); 
+ });
     
-  }
+}
   return (
     <React.Fragment>
       <section class="uk-sectio uk-section-large">
