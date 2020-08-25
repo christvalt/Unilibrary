@@ -9,6 +9,8 @@ import Details from "../pages/home/details";
 import SignIn from "../pages/auth/signIn";
 import SignUp from "../pages/auth/signup";
 import Admin from "../pages/admin/index";
+import Join from "../components/Join/Join";
+import Chat from "../components/Chat/Chat";
 
 const Router = () => {
   let routes = (
@@ -18,6 +20,8 @@ const Router = () => {
       <Route path="/signin" component={SignIn} />
       <Route path="/signup" component={SignUp} />
       <Route path="/admin" component={Admin} />
+      <Route path="/join" component={Join} />
+      <Route path="/Chat" component={Chat} />
     </Switch>
   );
 
