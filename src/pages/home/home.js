@@ -51,7 +51,7 @@ function Home() {
             class="uk-tile uk-tile-default uk-text-center uk-margin"
             style={{ paddingTop: "0px", paddingBottom: "0px" }}
           >
-            <h2 class="uk-h1">Welcome to our courses bibotech</h2>
+            <h2 class="uk-h1">Welcome to UniLiBrary</h2>
           </div>
 
           <div class="uk-flex-center" data-uk-grid>
