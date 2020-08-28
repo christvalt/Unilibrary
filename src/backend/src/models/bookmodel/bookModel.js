@@ -15,10 +15,10 @@ var Bookschema = new Schema({
     type: Date,
     required: true,
   },
-  authors: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: 'Author',
-  },
+  // authors: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   required: 'Author',
+  // },
 
   longDescription: {
     type: String,
@@ -34,9 +34,9 @@ var Bookschema = new Schema({
     type: String,
     required: true,
   },
-  coverImageType: {
-    type: String,
-    required: true,
+ coverImageType: {
+   type: String,
+   required: true,
   },
 });
 

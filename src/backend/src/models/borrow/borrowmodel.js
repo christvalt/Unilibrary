@@ -12,10 +12,10 @@ var Borrowschema = new Schema({
       ref: 'book',
       type: Schema.Types.ObjectId   
   },  
-  boorowingdate: {
-    type: Date,
-    required: true,
-  },
+    // boorowingdate: {
+    //  type: Date,
+    //  required: true,
+    // },
   returningdate: {
     type: Date,
     required: true,
@@ -40,12 +40,3 @@ module.exports = Boorow;
 
 
 
-
-/*companyId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {         // User belongsTo Company 1:1
-          model: 'borrow',
-          key: 'id'
-        }
-      }, */

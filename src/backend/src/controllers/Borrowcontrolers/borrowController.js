@@ -6,7 +6,7 @@ const express = require("express");
 
 
 const borrow = require("../../models/borrow/borrowmodel");
-const Book = require("../../models/borrow/borrowmodel");
+const Book = require("../../models/bookmodel/bookModel");
 const User = require("../../models/authormodel/autormodel");
 const Boorow = require("../../models/borrow/borrowmodel");
 const router = express.Router();
@@ -23,7 +23,7 @@ const router = express.Router();
    *
    * @returns {object} - Message & Borrowed Book
    *
-   * @memberOf BorrowController
+   * 
    */
 const borrowBook=(req,res,next)=>{
     
@@ -38,7 +38,7 @@ const borrowBook=(req,res,next)=>{
     });
     foundBook
     .save()
-    .then(() => {
+    .then(updatedBorrowedBook => {
         console.log(req.body.bookId)
         Book.findOneAndUpdate(
             { _id: req.body.bookId},
@@ -50,16 +50,23 @@ const borrowBook=(req,res,next)=>{
             function (err, book) {
               if (err) res.send(err);
               else {    
-                    res.end("Super"); 
+                    res.end("borrowin effectuated"); 
               }
-            }); 
-      })  
-      .catch((err) => {
-          console.log(err)
-        res.json({
-          message: 'Internal Server Error' ,
-        });
-      });
+            }).then((borrowingRecord)=>{
+
+              req.loanRecords = {
+                surcharge: false,
+                newBookRecord: updatedBorrowedBook,
+                newBorrowRecord: borrowingRecord,
+              };
+            }) .catch((err) => {
+              console.log(err)
+            res.json({
+              message: 'Internal Server Error' ,
+            });
+          });
+      })  ;
+     
 }
 
 
@@ -127,9 +134,62 @@ const returnBook=(req,res)=>{
         .send({ message: 'Internal Server Error' }));
 }
 
+//Get record for a specific borrowed book
+const getBorrowedBook =(req,res,next)=>{
+  Boorow.findOne({ 
+
+    userId: req.userId,
+    bookId: req.params.bookId,
+    returned: false,
+  }).then((foundBorrowedBook)=>{
+    if(foundBorrowedBook) {
+      res.status(200).send({
+        message:'You borrowed this book',
+        foundBorrowedBook});   
+    }
+    res.status(200).send({
+      message: 'Cleared, Not borrowed by you!' });
+  })
+  .catch(()=>{
+    res.status(500).send({
+      message: 'Internal Server Error'
+    });
+  })
+  
+
+}
+
+
+const AllBorrowedOrNotReturnedBooks=(req,res,next)=>{
+
+  const {userId}=req.params;
+  const {returned}=req.query;
+  if (!userId) {
+    res.status(400).send({mesage:'supply userId'});
+  }
+
+
+  borrow.findOne({},{ projection: { _id: 0, name: 1, address: 1 }})
+
+}
+
+
+const list_borrow_books = (req, res) => {
+  // console.log("enetered");
+  Boorow.find({}, function (err, book) {
+    if (err) res.send(err);
+    res.json(book);
+  });
+};
+
+
 module.exports={
     borrowBook,
     returnBook,
+    getBorrowedBook,
+    list_borrow_books,
+    AllBorrowedOrNotReturnedBooks
+
 
 };
 
