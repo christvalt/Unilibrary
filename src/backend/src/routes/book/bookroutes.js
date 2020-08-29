@@ -23,5 +23,10 @@ router.put("/books/:id", booksController.read_book);
 router.put("/books/:id", authenticate, booksController.update_book);
 router.put("/books/:id", authenticate, booksController.delete_book);
 
+
+
+// Find a specific book and return it
+router.get('/books/:bookId', validateAndCheckIfBookExist, booksController.findBook);
+
 module.exports = router;
 

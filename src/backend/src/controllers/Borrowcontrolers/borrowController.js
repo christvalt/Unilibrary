@@ -65,11 +65,8 @@ const borrowBook=(req,res,next)=>{
               message: 'Internal Server Error' ,
             });
           });
-      })  ;
-     
+      })  ;    
 }
-
-
   /**
    * @static
    *
@@ -156,9 +153,7 @@ const getBorrowedBook =(req,res,next)=>{
     });
   })
   
-
 }
-
 
 const AllBorrowedOrNotReturnedBooks=(req,res,next)=>{
 
@@ -182,14 +177,12 @@ const list_borrow_books = (req, res) => {
   });
 };
 
-
 module.exports={
     borrowBook,
     returnBook,
     getBorrowedBook,
     list_borrow_books,
-    AllBorrowedOrNotReturnedBooks
-
+    AllBorrowedOrNotReturnedBooks,
 
 };
 

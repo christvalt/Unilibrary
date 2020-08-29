@@ -105,6 +105,47 @@ const delete_book = (req, res) => {
   });
 };
 
+
+
+//find a specific book in the library ------>
+/**
+ *********>>>>>>>look it after because we ha to make the category in the model 
+ * 
+ */
+
+ /*const findBook=(req, res)=> {
+  return Category.findOne({ where: { id: req.foundBook.categoryId } })
+    .then((category) => {
+      if (category) {
+        req.foundBook.dataValues.categoryName = category.title;
+      }
+      return res.status(200).send(req.foundBook);
+    })
+    .catch(() => {
+      res.status(500).send({
+        message: 'Internal Server Error'
+      });
+    });
+}
+ */
+
+const findBook = (req, res) => {
+  return Category.findOne({ id: req.foundBook.categoryId  })
+    .then((category) => {
+      if (category) {
+        req.foundBook.dataValues.categoryName = category.title;
+      }
+      return res.status(200).send(req.foundBook);
+    })
+    .catch(() => {
+      res.status(500).send({
+        message: 'Internal Server Error'
+      });
+    });
+};
+
+
+
 //module.exports = router;
 
 module.exports = {
@@ -113,4 +154,5 @@ module.exports = {
   read_book,
   update_book,
   delete_book,
+  findBook
 };

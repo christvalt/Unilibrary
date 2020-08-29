@@ -19,6 +19,7 @@ const checkIfBorrowExist=(req, res, next)=> {
           userId: req.body.userId,
           bookId: req.body.bookId,
           returned: false,
+          returningdate : { $gt: new Date.now()},
         })
         .then((foundBorrow) => {
           // console.log(foundBorrow)

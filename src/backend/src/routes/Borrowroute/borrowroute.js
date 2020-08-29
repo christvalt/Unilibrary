@@ -10,6 +10,7 @@ const router = express.Router();
 const borrowController = require("../../controllers/Borrowcontrolers/borrowController");
 
 const checkIfBorrowExist = require("../../middlleware/BorrowMiddleware");
+const validateAndCheckIfBookExist =require("../../middlleware/BookMiddleware")
 const authenticate = require("../../middlleware/authenticate");
 
 
@@ -17,14 +18,20 @@ const authenticate = require("../../middlleware/authenticate");
 router.get("/test", (req, res)=>{
   res.end("Test")
 });
-router.put('/users/:userId/books',  borrowController.returnBook);
-  
-router.post('/users/:userId/books',checkIfBorrowExist, borrowController.borrowBook);
+
+//return book for the library 
+
+//error whe i had validationAndChekifBookExist
+router.put('/users/:userId/books',borrowController.returnBook);
+
+//borrow a  specific book by one user  
+//error whe i had validationAndChekifBookExist and checkIfBorrowExist
+router.post('/users/:userId/books',borrowController.borrowBook);
 
 
 
 // // Get a specific book that was borrowed
-// Router.get('/borrowed/:bookId', borrowController.getBorrowedBook);
+router.get('/borrowed/:bookId', borrowController.getBorrowedBook);
 
 
   // Get a specific book that was borrowed
@@ -36,10 +43,10 @@ router.post('/users/:userId/books',checkIfBorrowExist, borrowController.borrowBo
 
   //List of books borrowed by a user and not returned to the library
 
-  Router.get('/users/:userId/books', borrowController.AllBorrowedOrNotReturnedBooks);  
+  router.get('/users/:userId/books', borrowController.AllBorrowedOrNotReturnedBooks);  
 
 
 //List of all books borrowed by a user
-  Router.get('/borrowed/:userId/books', borrowController.AllBorrowedOrNotReturnedBooks);
+  router.get('/borrowed/:userId/books', borrowController.AllBorrowedOrNotReturnedBooks);
 
 module.exports = router;

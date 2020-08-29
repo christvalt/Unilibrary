@@ -30,7 +30,7 @@ const Router = () => {
   );
 
   if (true) {
-    return <BrowserRouter>{routes}</BrowserRouter>;
+    return <BrowserRouter><Header />{routes} <Footer /></BrowserRouter>;
   } else {
     return (
       <BrowserRouter>
