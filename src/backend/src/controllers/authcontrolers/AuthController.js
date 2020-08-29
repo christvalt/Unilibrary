@@ -8,6 +8,7 @@ const { response } = require("express");
 const register = (req, res, next) => {
   bcrypt.hash(req.body.password, 10, function (err, hashedpass) {
     if (err) {
+      console.log("error hasing");
       res.json({
         error: err,
       });
@@ -37,34 +38,31 @@ const login = (req, res, next) => {
   var username = req.body.username;
   var password = req.body.password;
 
-  User.findOne({ $or: [{ email: username }] }).then(
-    (user) => {
-      if (user) {
-        bcrypt.compare(password, user.password, function (err, result) {
-          if (err) {
-            res.json({
-              error: err,
-            });
-          }
-          if (result) {
-            let token = jwt.sign({ name: user.name }, "AZQ,PI)0(", {
-              expiresIn: "1h",
-            });
-            res.json({
-              message: "Login succesfully!",
-              token,
-            });
-          } else {
-            
-          }
-        });
-      } else {
-        res.json({
-          message: "No user found!",
-        });
-      }
+  User.findOne({ $or: [{ email: username }] }).then((user) => {
+    if (user) {
+      bcrypt.compare(password, user.password, function (err, result) {
+        if (err) {
+          res.json({
+            error: err,
+          });
+        }
+        if (result) {
+          let token = jwt.sign({ name: user.name }, "AZQ,PI)0(", {
+            expiresIn: "1h",
+          });
+          res.json({
+            message: "Login succesfully!",
+            token,
+          });
+        } else {
+        }
+      });
+    } else {
+      res.json({
+        message: "No user found!",
+      });
     }
-  );
+  });
 };
 const logout = async (req, res) => {
   try {
