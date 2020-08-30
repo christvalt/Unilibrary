@@ -8,30 +8,34 @@ const { response } = require("express");
 const register = (req, res, next) => {
   bcrypt.hash(req.body.password, 10, function (err, hashedpass) {
     if (err) {
-      console.log("error hasing");
+     // console.log("error hashing");
       res.json({
         error: err,
       });
-    }
-    let user = new User({
-      name: req.body.name,
-      email: req.body.email,
-      phone: req.body.phone,
-      password: hashedpass,
-    });
-    user
-      .save()
-      .then((user) => {
-        res.json({
-          message: "User added succesfully",
-        });
-      })
-      .catch((error) => {
-        res.json({
-          message: "an error occured",
-        });
+    }else{
+      let user = new User({
+        name: req.body.name,
+        email: req.body.email,
+        phone: req.body.phone,
+        password: hashedpass,
       });
+      user
+        .save()
+        .then((user) => {
+          res.json({
+            message: "User added succesfully",
+          });
+        })
+        .catch((err) => {
+           res.json({
+             message: "an error occured",
+           });
+        });
+    }
+    console.log(req.body)
+ 
   });
+  
 };
 
 const login = (req, res, next) => {

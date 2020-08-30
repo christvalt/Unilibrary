@@ -22,11 +22,11 @@ console.log(Book)
      res.status(400).send({ message: 'Ensure book ID is supplied' });
      
     }
-
+    console.log(query)
     // Checks if book exists in the database
     
     Book.findOne({
-        bookId
+      query
       })
       .then((book) => {
         if (req.url === '/books') {
@@ -36,10 +36,12 @@ console.log(Book)
               message: `Conflict! ${req.body.title} exists already`,
               book
             });
+        } else {
+          if (!book) return res.status(404).send({ message: 'Book not found' });
+          req.foundBook = book;
+          return next();
         }
-        if (!book) return res.status(404).send({ message: 'Book not found' });
-        req.foundBook = book;
-        return next();
+        
       })
       .catch(() => res.status(500).send({ message: 'Internal Server Error' }));
   }

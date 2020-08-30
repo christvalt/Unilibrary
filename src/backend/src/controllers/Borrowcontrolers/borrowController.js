@@ -26,7 +26,8 @@ const router = express.Router();
    * 
    */
 const borrowBook=(req,res,next)=>{
-    
+  console.log(req.body)   
+  console.log("d") 
     var foundBook = new borrow({
         returned: false,
         userId: req.body.userId,
@@ -65,7 +66,8 @@ const borrowBook=(req,res,next)=>{
               message: 'Internal Server Error' ,
             });
           });
-      })  ;    
+      }) 
+     ;  
 }
   /**
    * @static
@@ -134,9 +136,8 @@ const returnBook=(req,res)=>{
 //Get record for a specific borrowed book
 const getBorrowedBook =(req,res,next)=>{
   Boorow.findOne({ 
-
-    userId: req.userId,
-    bookId: req.params.bookId,
+    userId: req.body.userId,
+    bookId: req.body.bookId,
     returned: false,
   }).then((foundBorrowedBook)=>{
     if(foundBorrowedBook) {
@@ -163,8 +164,37 @@ const AllBorrowedOrNotReturnedBooks=(req,res,next)=>{
     res.status(400).send({mesage:'supply userId'});
   }
 
-
-  borrow.findOne({},{ projection: { _id: 0, name: 1, address: 1 }})
+  borrow.aggregate( [
+    {
+      $match:
+         {
+           $and: [ { returned : false  } , { returningdate: {$lt : new Date(Date.now()) } }] 
+         }
+    },
+    {
+      
+      $lookup:
+      {
+        from: "bookmodels",
+        localField: "bookId",
+        foreignField: "_id",
+        as: "book"
+      } 
+    }
+      ] ).then((foundBorrowedBook)=>{
+        if(foundBorrowedBook) {
+          res.status(200).send({
+            message:'You borrowed this book',
+            foundBorrowedBook});   
+        }
+        res.status(200).send({
+          message: 'Cleared, Not borrowed by you!' });
+      })
+      .catch(()=>{
+        res.status(500).send({
+          message: 'Internal Server Error'
+        });
+      })
 
 }
 

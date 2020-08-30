@@ -21,6 +21,7 @@ const pro = require("./src/routes/uploadroute/profile");
 const u = require("./src/routes/uploadroute/u");
 const actor = require("./src/routes/author/author");
 const borrow = require("./src/routes/Borrowroute/borrowroute");
+const categ = require("./src/routes/category/Categoryroute");
 const { Socket } = require("dgram");
 
 const app = express();
@@ -49,6 +50,7 @@ app.use("/BookRoute", BookRoute);
 app.use("/profiles", pro);
 app.use("/test", u);
 app.use("/borrow", borrow);
+app.use("/categ", categ);
 
 const port = process.env.PORT || 5000;
 

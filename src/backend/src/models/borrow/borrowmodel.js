@@ -12,10 +12,10 @@ var Borrowschema = new Schema({
       ref: 'book',
       type: Schema.Types.ObjectId   
   },  
-    // boorowingdate: {
-    //  type: Date,
-    //  required: true,
-    // },
+     boorowingdate: {
+      type: Date,
+      required: true,
+     },
   returningdate: {
     type: Date,
     required: true,
@@ -27,10 +27,10 @@ var Borrowschema = new Schema({
   quantity: {
     type: Number,    
   },
-  userId: [{
+  userId: {
     ref: 'user',
-      type: Schema.Types.ObjectId   
-  }, ]
+    type: Schema.Types.ObjectId   
+  }
   
 });
 

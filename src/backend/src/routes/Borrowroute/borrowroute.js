@@ -35,7 +35,7 @@ router.get('/borrowed/:bookId', borrowController.getBorrowedBook);
 
 
   // Get a specific book that was borrowed
-  router.get('/borrowed/:bookId', borrowController.getBorrowedBook);
+  // router.get('/borrowed/:bookId', borrowController.getBorrowedBook);
 
   // all borrowed book
   router.get('/borrowed', borrowController.list_borrow_books);

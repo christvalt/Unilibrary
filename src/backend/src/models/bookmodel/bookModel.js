@@ -38,6 +38,10 @@ var Bookschema = new Schema({
    type: String,
    required: true,
   },
+  categoryId: {
+    type: String,
+    allowNull: true
+  }
 });
 
 const Book = mongoose.model("Bookmodel", Bookschema);

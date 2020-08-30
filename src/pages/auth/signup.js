@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import axios from "axios";
+import qs from 'qs'
 
 function SignUp() {
   const [data, setDate] = useState([]);
@@ -16,19 +17,20 @@ function SignUp() {
     console.log("username", username);
     console.log("password", password);
 
-    axios
-      .post("http://localhost:5000/AuthRoute/register", {
-        body: {
-          name: username,
-          password: password,
-          role: "client",
-          email: email,
-        },
+    const config = {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    }
 
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+    var data = qs.stringify({
+      name: username,
+      password: password,
+      role: "client",
+      email: email,
+  });
+    axios
+      .post("http://localhost:5000/AuthRoute/register", data ,config)
       .then(
         (response) => {
           console.log(response);
