@@ -32,7 +32,7 @@ const register = (req, res, next) => {
            });
         });
     }
-    console.log(req.body)
+    //console.log(req.body)
  
   });
   
@@ -52,7 +52,7 @@ const login = (req, res, next) => {
         }
         if (result) {
           let token = jwt.sign({ name: user.name }, "AZQ,PI)0(", {
-            expiresIn: "1h",
+            expiresIn: "4h",
           });
           res.json({
             message: "Login succesfully!",
@@ -68,6 +68,7 @@ const login = (req, res, next) => {
     }
   });
 };
+
 const logout = async (req, res) => {
   try {
     req.user.tokens = req.user.tokens.filter((token) => {
