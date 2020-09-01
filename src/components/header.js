@@ -33,7 +33,7 @@ function Header() {
               </li>
 
               <li>
-                <a class="color-is-white" href="#">
+                <a class="color-is-white" href="/join">
                   CHat
                 </a>
               </li>

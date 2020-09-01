@@ -1,29 +1,40 @@
 import React,{useEffect, useState} from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import axios from 'axios';
+import qs from 'qs'
+
 
 function SignIn() {
   const  [ data, setDate] = useState([]);
   const  [ username, setUsername] = useState('');
   const  [ password, setPassword] = useState('');
   console.log( 'testdata',data)  
+  //loads data on start
   useEffect(()=>{
-setDate([1])
-  },[0])
+
+  },[])
+
+
+
   const sumit=() =>{
     console.log('username',username)
     console.log('password',password)
 
-  let data = {
-      "username": username,
-      "password": password,
+  let data =  qs.stringify({
+      username: username,
+      password: password,
+  })
+
+  
+  const config = {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
   }
 
-  axios . post ( 'http://localhost:5000/AuthRoute/login' ,  { 
-
-   data
- }) 
+  axios.post( 'http://localhost:5000/AuthRoute/login', data,config) 
  . then ( ( response )  =>  { 
+   
    console . log ( response ); 
  },  ( error )  =>  {  
    console . log ( error ); 
@@ -75,3 +86,26 @@ setDate([1])
 }
 
 export default SignIn;
+
+
+
+/*  const  [ book, setbook] = useState([]);
+   //loads data on start
+
+   useEffect(()=>{
+
+   },[])
+
+   const componentDidMount=()=>{
+    axios.get('http://localhost:5000/BookRoute/books') 
+     .then(res => {
+        const book = res.data;
+        setbook({ book });
+      //console.log(res);
+    })
+    
+    import React,{useEffect, useState} from "react";
+ import axios from 'axios';
+import qs from 'qs'
+    
+    */
