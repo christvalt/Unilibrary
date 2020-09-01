@@ -4,6 +4,7 @@ const express = require("express");
 
 const u = require("../../routes/uploadroute/u");
 const Book = require("../../models/bookmodel/bookModel");
+const Category = require("../../models/category/category");
 const router = express.Router();
 
 
@@ -129,20 +130,24 @@ const delete_book = (req, res) => {
 }
  */
 
-const findBook = (req, res) => {
-  return Category.findOne({ id: req.foundBook.categoryId  })
-    .then((category) => {
-      if (category) {
-        req.foundBook.dataValues.categoryName = category.title;
+ const findBook = (req, res) => {
+  //console.log(req.foundBook.dataValues.bookName )
+  console.log(req),
+  Book.findById(req.params.id, function (err, book) {
+    if (err) res.send(err);
+    else {
+      if (book == null) {
+        res.status(404).send({
+          description: "book not found",
+        });
+      } else {
+        res.json(book);
       }
-      return res.status(200).send(req.foundBook);
-    })
-    .catch(() => {
-      res.status(500).send({
-        message: 'Internal Server Error'
-      });
-    });
+    }
+  });
+    
 };
+
 
 
 
