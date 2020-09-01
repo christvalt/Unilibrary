@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import axios from "axios";
-import qs from 'qs'
+import qs from "qs";
 
 function SignUp() {
   const [data, setDate] = useState([]);
@@ -19,30 +19,29 @@ function SignUp() {
 
     const config = {
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    }
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    };
 
     var data = qs.stringify({
       name: username,
       password: password,
       role: "client",
       email: email,
-  });
-    axios
-      .post("http://localhost:5000/AuthRoute/register", data ,config)
-      .then(
-        (response) => {
-          console.log(response);
-          setLoading(false);
-          setSuccess(response);
-        },
-        (error) => {
-          console.log(error);
-          setLoading(false);
-          setError(error);
-        }
-      );
+    });
+    axios.post("http://localhost:5000/AuthRoute/register", data, config).then(
+      (response) => {
+        console.log(response);
+        setLoading(false);
+        setSuccess(response.data);
+        console.log("success", success);
+      },
+      (error) => {
+        console.log(error);
+        setLoading(false);
+        setError(error);
+      }
+    );
   };
 
   return (
@@ -117,9 +116,11 @@ function SignUp() {
                   </a>
                 </div>
               )}
-              {success && (
+              {!!success && (
                 <div class="uk-margin">
-                  <a class="uk-text-success">{success.message}</a>
+                  <a class="uk-text-success" href="/signin">
+                    {success.message}, clikc here to login
+                  </a>
                 </div>
               )}
             </form>

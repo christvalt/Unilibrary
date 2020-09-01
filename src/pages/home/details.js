@@ -1,6 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-function Details() {
+function Details(props) {
+  const [data, setDate] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/BookRoute/books/" + props.match.params.id)
+      .then(
+        (response) => {
+          setLoading(false);
+          setDate(response.data);
+          console.log(response.data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }, []);
+
   return (
     <React.Fragment>
       <section class="uk-section-small">
@@ -9,13 +29,12 @@ function Details() {
             <div class="uk-width-1-1@m">
               <h1 class="uk-article-title">
                 <a class="uk-link-reset" href="">
-                  Heading
+                  {!loading ? data.title : "loading..."}
                 </a>
               </h1>
 
               <p class="uk-article-meta">
-                Written by <a href="#">Super User</a> on 12 April 2012. Posted
-                in <a href="#">Blog</a>
+                {!loading ? data.publishedDate : "today"}
               </p>
               <div class="uk-margin-top" data-uk-grid>
                 <div class="uk-width-1-3@m">
@@ -26,28 +45,50 @@ function Details() {
                 </div>
                 <div class="uk-width-2-3@m uk-flex-left">
                   <p className="uk-text-left">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                    sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    {!loading ? data.longDescription : "loading..."}
                   </p>
-                  <p className="uk-text-left">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                    sea takimata sanctus est Lorem ipsum dolor sit amet.
-                  </p>
+                  <b>
+                    <p className="uk-text-left">
+                      Page count : {!loading ? data.pageCount : 0}
+                    </p>
+                  </b>
+                  <b>
+                    <p className="uk-text-left uk-text-success">
+                      Book status : {!loading ? data.status : 0}
+                    </p>
+                  </b>
 
-                  <p data-uk-margin>
-                    <button class="uk-button uk-button-default">
-                      Reserve Book
-                    </button>
-                  </p>
-                  <button class="uk-button uk-button-primary">Primary</button>
+                  <button
+                    class="uk-button uk-button-primary"
+                    onClick={() => setShow(!show)}
+                  >
+                    Rent this book
+                  </button>
                 </div>
               </div>
+              {show && (
+                <div class="uk-margin-large-top">
+                  <form class="uk-form-stacked">
+                    <div class="uk-margin">
+                      <p>Please enter your return date</p>
+                      <label
+                        class="uk-form-label"
+                        for="form-stacked-text"
+                      ></label>
+                      <div class="uk-form-controls">
+                        <input
+                          class="uk-input uk-form-width-medium"
+                          id="form-stacked-text"
+                          type="date"
+                          placeholder="Some text..."
+                          min={Date()}
+                        />
+                      </div>
+                    </div>
+                    <a class="uk-button uk-button-primary">Rent</a>
+                  </form>
+                </div>
+              )}
 
               <h3 class="uk-text-bold uk-text-left uk-margin-large-top ">
                 Similare Books

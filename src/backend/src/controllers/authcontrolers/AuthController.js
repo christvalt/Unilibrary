@@ -8,11 +8,11 @@ const { response } = require("express");
 const register = (req, res, next) => {
   bcrypt.hash(req.body.password, 10, function (err, hashedpass) {
     if (err) {
-     // console.log("error hashing");
+      // console.log("error hashing");
       res.json({
         error: err,
       });
-    }else{
+    } else {
       let user = new User({
         name: req.body.name,
         email: req.body.email,
@@ -27,15 +27,13 @@ const register = (req, res, next) => {
           });
         })
         .catch((err) => {
-           res.json({
-             message: "an error occured",
-           });
+          res.json({
+            message: "an error occured",
+          });
         });
     }
     //console.log(req.body)
- 
   });
-  
 };
 
 const login = (req, res, next) => {
@@ -57,7 +55,7 @@ const login = (req, res, next) => {
           res.json({
             message: "Login succesfully!",
             token,
-            username,
+            user,
           });
         } else {
         }

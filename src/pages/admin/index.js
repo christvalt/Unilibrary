@@ -167,41 +167,6 @@ function Admin() {
                 Albums
               </a>
             </li>
-            <li>
-              <a href="#">
-                <span
-                  data-uk-icon="icon: thumbnails"
-                  class="uk-margin-small-right"
-                ></span>
-                Featured Content
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span
-                  data-uk-icon="icon: lifesaver"
-                  class="uk-margin-small-right"
-                ></span>
-                Tips
-              </a>
-            </li>
-            <li class="uk-parent">
-              <a href="#">
-                <span
-                  data-uk-icon="icon: comments"
-                  class="uk-margin-small-right"
-                ></span>
-                Reports
-              </a>
-              <ul class="uk-nav-sub">
-                <li>
-                  <a href="#">Sub item</a>
-                </li>
-                <li>
-                  <a href="#">Sub item</a>
-                </li>
-              </ul>
-            </li>
           </ul>
           <div class="left-content-box uk-margin-top">
             <h5>Daily Reports</h5>

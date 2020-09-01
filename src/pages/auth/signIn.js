@@ -1,46 +1,44 @@
-import React,{useEffect, useState} from "react";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import axios from 'axios';
-import qs from 'qs'
-
+import React, { useEffect, useState } from "react";
+import {
+  useParams,
+  useLocation,
+  useHistory,
+  useRouteMatch,
+} from "react-router-dom";
+import axios from "axios";
+import qs from "qs";
 
 function SignIn() {
-  const  [ data, setDate] = useState([]);
-  const  [ username, setUsername] = useState('');
-  const  [ password, setPassword] = useState('');
-  console.log( 'testdata',data)  
+  const [data, setDate] = useState([]);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  //console.log("testdata", data);
   //loads data on start
-  useEffect(()=>{
-
-  },[])
-
-
-
-  const sumit=() =>{
-    console.log('username',username)
-    console.log('password',password)
-
-  let data =  qs.stringify({
+  useEffect(() => {}, []);
+  const history = useHistory();
+  const sumit = () => {
+    let data = qs.stringify({
       username: username,
       password: password,
-  })
+    });
 
-  
-  const config = {
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  }
+    const config = {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    };
 
-  axios.post( 'http://localhost:5000/AuthRoute/login', data,config) 
- . then ( ( response )  =>  { 
-   
-   console . log ( response ); 
- },  ( error )  =>  {  
-   console . log ( error ); 
- });
-    
-}
+    axios.post("http://localhost:5000/AuthRoute/login", data, config).then(
+      (response) => {
+        localStorage.setItem("login", JSON.stringify(response.data));
+        history.push("/");
+        window.location.reload();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  };
   return (
     <React.Fragment>
       <section class="uk-sectio uk-section-large">
@@ -53,11 +51,13 @@ function SignIn() {
               <div class="uk-margin">
                 <div class="uk-form-controls">
                   <input
-                  onChange={(e)=>{setUsername(e.target.value)}}
+                    onChange={(e) => {
+                      setUsername(e.target.value);
+                    }}
                     class="uk-input"
                     id="form-stacked-text"
-                    type="text"
-                    placeholder="Username"
+                    type="email"
+                    placeholder="email"
                   />
                 </div>
               </div>
@@ -65,8 +65,10 @@ function SignIn() {
               <div class="uk-margin">
                 <div class="uk-form-controls">
                   <input
-                  onChange={(e)=>{setPassword(e.target.value)}}
-                     class="uk-input"
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
+                    class="uk-input"
                     id="form-stacked-text"
                     type="text"
                     placeholder="password"
@@ -74,7 +76,14 @@ function SignIn() {
                 </div>
               </div>
 
-              <a onClick={()=>{sumit()}} class="uk-button uk-button-primary">Login</a>
+              <a
+                onClick={() => {
+                  sumit();
+                }}
+                class="uk-button uk-button-primary"
+              >
+                Login
+              </a>
 
               <div class="uk-margin"></div>
             </form>
@@ -86,8 +95,6 @@ function SignIn() {
 }
 
 export default SignIn;
-
-
 
 /*  const  [ book, setbook] = useState([]);
    //loads data on start
