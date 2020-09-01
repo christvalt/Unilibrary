@@ -13,7 +13,7 @@ const router = express.Router();
 
 
  /**
-   * @static
+
    *
    * @description Borrow a book from the library
    *
@@ -40,7 +40,7 @@ const borrowBook=(req,res,next)=>{
     foundBook
     .save()
     .then(updatedBorrowedBook => {
-        console.log(req.body.bookId)
+       // console.log(req.body.bookId)
         Book.findOneAndUpdate(
             { _id: req.body.bookId},
             {
