@@ -11,6 +11,11 @@ import SignUp from "../pages/auth/signup";
 import Admin from "../pages/admin/index";
 import Join from "../components/Join/Join";
 import Chat from "../components/Chat/Chat";
+import Categories from "../components/categorie";
+
+
+
+
 //import DetailRead from "../pages/home/DetailRead";
 
 const Router = (props) => {
@@ -23,6 +28,7 @@ const Router = (props) => {
       <Route path="/admin" component={Admin} />
       <Route path="/join" component={Join} />
       <Route path="/Chat" component={Chat} />
+      <Route path="/Categories" component={Categories} />
     </Switch>
   );
 

@@ -6,10 +6,11 @@ var Categoryschema = new Schema({
 
   title: {
     type: String,
-    unique: {
-      args: true,
-      msg: 'Category already exists'
-    },
+    required:true
+    // unique: {
+    //   args: true,
+    //   msg: 'Category already exists'
+    // },
   }
  
 });

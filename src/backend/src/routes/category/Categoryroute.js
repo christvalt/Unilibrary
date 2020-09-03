@@ -11,7 +11,7 @@ var CategoryController = require("../../controllers/categoriecontrollers/Categor
 
 //add o create a new category
 
-router.post('/category', CategoryController.create_category);
+router.post('/category', CategoryController.create_categorie);
 
 // list of all category
 

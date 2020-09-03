@@ -13,37 +13,47 @@ const Category = require("../../models/category/category");
    *
    * @param {object} req - The request payload sent to the controller
    * @param {object} res - The request payload sent from the contorller
-   *
-   * @returns {object} - Message
-   *
-   * @memberOf CategoryController
+   * 
    */
 
-  const create_category = (req, res) => {
+  // const create_category = (req, res) => {
 
-    const { title } = req.body;
-   // Searches if Category exists in the database
-   Category.findOne({ title:req.title})
-   .then((foundCat)=>{
-    if (foundCat) {
-       res.status(409).send({
-        message: `Conflict! ${req.Category.title} exists already`,
-        foundCat });
-    }
+  //   const { title } = req.body;
+  //  // Searches if Category exists in the database
+  //  Category.findOne({ title:req.title})
+  //  .then((foundCat)=>{
+  //   if (foundCat) {
+  //      res.status(409).send({
+  //      // message: `Conflict! ${req.Category.title} exists already`,
+  //       foundCat });
+  //   }
 
     // If cartegory does not exist, create new category.
 
-    var new_category = new Category(req.Category);
-    console.log(new_category);
-    new_category.save()
-    .then(category => res.status(201).send({
-      message: `${category.title}, successfully added`,
-      category
-    }))
-    .catch(() =>
-      res.status(500).send({ message: 'Internal Server Error' }));
-   })
-  };
+
+
+
+    const create_categorie = (req, res) => {
+      var new_category = new Category(req.body);
+      console.log(new_category);
+      new_category.save(function (err, book) {
+        if (err) res.send(err);
+        res.status(201).json(book);
+      });
+    };
+
+  //   var new_category = new Category(req.Category);
+  //   // console.log(req.body)
+  //   // console.log(new_category);
+  //   new_category.save()
+  //   .then(category => res.status(201).send({
+  //     message: `${category.title}, successfully added`,
+  //     category
+  //   }))
+  //   .catch(() =>
+  //     res.status(500).send({ message: 'Internal Server Error' }));
+  //  })
+  // };
 
   /**
    *
@@ -70,6 +80,6 @@ const Category = require("../../models/category/category");
 
 
 module.exports={
-  create_category,
+  create_categorie,
   listCategory
 }

@@ -120,7 +120,7 @@ function Footer(props) {
 
               <div class="uk-width-1-3@m uk-width-1-2@s uk-flex-first@m uk-first-column">
                 <div>
-                  <img src="" width="50px" alt="gce revision" />
+                  <img src="" width="50px" alt="unilibrary" />
 
                   <p class="uk-text-medium">xxxxxx</p>
 

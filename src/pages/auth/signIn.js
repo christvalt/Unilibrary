@@ -96,23 +96,4 @@ function SignIn() {
 
 export default SignIn;
 
-/*  const  [ book, setbook] = useState([]);
-   //loads data on start
 
-   useEffect(()=>{
-
-   },[])
-
-   const componentDidMount=()=>{
-    axios.get('http://localhost:5000/BookRoute/books') 
-     .then(res => {
-        const book = res.data;
-        setbook({ book });
-      //console.log(res);
-    })
-    
-    import React,{useEffect, useState} from "react";
- import axios from 'axios';
-import qs from 'qs'
-    
-    */

@@ -164,7 +164,7 @@ function Header(props) {
                     <li class="uk-nav-divider"></li>
 
                     <li>
-                      <a href="#" class="uk-text-bold color-is-white">
+                      <a href="/categories" class="uk-text-bold color-is-white">
                         <span
                           class="uk-margin-small-right"
                           uk-icon="icon:   file-pdf"
