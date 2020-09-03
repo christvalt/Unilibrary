@@ -18,7 +18,7 @@ const [success, setSuccess] = useState("");
 
 
   useEffect(() => {
-    const req1=
+   
     axios
       .get("http://localhost:5000/BookRoute/books/" + props.match.params.id)
       .then(
@@ -51,8 +51,8 @@ const [success, setSuccess] = useState("");
     },
   };
 
-  const req2=  axios
-    .post(`http://localhost:5000/borrow/users/:userId/books`, data2, config)
+   axios
+    .post("http://localhost:5000/borrow/users/:userId/books", data2, config)
     .then(
       (response) => {
         console.log(response);
@@ -68,6 +68,11 @@ const [success, setSuccess] = useState("");
     );
 
   }
+
+/*  axios.all([req1(), req2()])
+  .then(axios.spread(function (acct, perms) {
+    // Both requests are now complete
+})); */
 
   return (
     <React.Fragment>

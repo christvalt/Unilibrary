@@ -30,6 +30,11 @@ class Home extends Component {
     this.state = {
       Books: [],
     };
+
+    this.state2 = {
+      Books: [],
+    };
+
   }
   getBooksData() {
     axios
@@ -47,26 +52,26 @@ class Home extends Component {
   }
   componentDidMount() {
     this.getBooksData();
+    this.findbook();
     //this. findBooksData();
   }
-
-/*
-  findBooksData() {
+/**
+@description:find one book by a user
+*/
+   findbook() {
     axios
-      .get(`http://localhost:5000/BookRoute/books/title`, {})
+      .get(`http://localhost:5000/BookRoute/books/:title`, {})
       .then((res) => {
         const data = res.data;
         console.log(data);
-        this.setState({
+        this.setState2({
           Books: data,
         });
       })
       .catch((error) => {
         console.log(error);
       });
-  } */
-
-
+  }
 
 
   render() {
@@ -132,6 +137,7 @@ class Home extends Component {
                       style={{ fontSize: "14px" }}
                       type="search"
                       placeholder="Type something"
+                      //onKeyPress={event => event.key === 'Enter' ? findbook(event) : null}
                     />
                   </form>
                 </div>
