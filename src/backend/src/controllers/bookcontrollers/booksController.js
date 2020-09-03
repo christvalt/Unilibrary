@@ -133,7 +133,8 @@ const delete_book = (req, res) => {
  const findBook = (req, res) => {
   //console.log(req.foundBook.dataValues.bookName )
   console.log(req),
-  Book.findById(req.params.id, function (err, book) {
+  Book.findOne({_title: req.params._title}  ,function (err, book) {
+    //console.log(req.params.title);
     if (err) res.send(err);
     else {
       if (book == null) {

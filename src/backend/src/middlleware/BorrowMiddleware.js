@@ -37,8 +37,9 @@ const checkIfBorrowExist=(req, res, next)=> {
 
 //check is one book is borowed
 const check_if_book_isborrowed= ()=>{
-  Boorow.find({ 
+  Book.findOne({ 
     returningdate : { $gt: new Date.now()}, 
+    status:Reserved,
     returned:0,
   
   }).then(()=>{

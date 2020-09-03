@@ -47,7 +47,28 @@ class Home extends Component {
   }
   componentDidMount() {
     this.getBooksData();
+    //this. findBooksData();
   }
+
+/*
+  findBooksData() {
+    axios
+      .get(`http://localhost:5000/BookRoute/books/title`, {})
+      .then((res) => {
+        const data = res.data;
+        console.log(data);
+        this.setState({
+          Books: data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  } */
+
+
+
+
   render() {
     return (
       <React.Fragment>

@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import qs from "qs";
 
 function Details(props) {
   const [data, setDate] = useState([]);
   const [loading, setLoading] = useState(true);
   const [show, setShow] = useState(false);
+//for borrow
+const [userId, setuserId] = useState("");
+const [bookId, setbokId] = useState("");
+const [username, setusername] = useState("");
+const [error, setError] = useState("");
+const [success, setSuccess] = useState("");
+
+
+
+
 
   useEffect(() => {
+    const req1=
     axios
       .get("http://localhost:5000/BookRoute/books/" + props.match.params.id)
       .then(
@@ -20,6 +32,42 @@ function Details(props) {
         }
       );
   }, []);
+
+
+
+  const borrowBook=()=>{    
+//dichiaration for the borrow action 
+//const [data2, setDate] = useState([]);
+
+  var data2 = qs.stringify({
+    userId: userId,
+    bookId: bookId,
+    username:username,
+  });
+
+  const config = {
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+  };
+
+  const req2=  axios
+    .post(`http://localhost:5000/borrow/users/:userId/books`, data2, config)
+    .then(
+      (response) => {
+        console.log(response);
+        setLoading(false);
+        setSuccess(response.data2);
+        console.log("success", success);
+      },
+      (error) => {
+        console.log(error);
+        setLoading(false);
+        setError(error);
+      }
+    );
+
+  }
 
   return (
     <React.Fragment>
@@ -50,6 +98,11 @@ function Details(props) {
                   <b>
                     <p className="uk-text-left">
                       Page count : {!loading ? data.pageCount : 0}
+                    </p>
+                  </b>
+                  <b>
+                    <p className="uk-text-left">
+                      Author : {!loading ? data.authors: "loading..."}
                     </p>
                   </b>
                   <b>
@@ -85,7 +138,9 @@ function Details(props) {
                         />
                       </div>
                     </div>
-                    <a class="uk-button uk-button-primary">Rent</a>
+                    <a  onClick={() => {
+                  borrowBook();
+                }}class="uk-button uk-button-primary">Rent</a>
                   </form>
                 </div>
               )}
