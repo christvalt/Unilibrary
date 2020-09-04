@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-coverImageBasePath ='./upload';
+coverImageBasePath = "./upload";
 
 var Bookschema = new Schema({
   title: {
@@ -11,14 +11,14 @@ var Bookschema = new Schema({
     type: Number,
     required: true,
   },
-  publishedDate: {
-    type: Date,
+  // publishedDate: {
+  //   type: Date,
+  //   required: true,
+  // },
+  authors: {
+    type: String,
     required: true,
   },
-   authors: {
-     type: String,
-     required: true,
-   },
 
   longDescription: {
     type: String,
@@ -30,21 +30,21 @@ var Bookschema = new Schema({
     enum: ["Available", "Maintenance", "Loaned", "Reserved"],
     default: "Maintenance",
   },
-  coverImageName: {
-    type: String,
-    required: true,
-  },
- coverImageType: {
-   type: String,
-   required: true,
-  },
+  // coverImageName: {
+  //   type: String,
+  //   required: true,
+  // },
+  //  coverImageType: {
+  //    type: String,
+  //    required: true,
+  //   },
   categoryId: {
     type: String,
-    allowNull: true
-  }
+    allowNull: true,
+  },
 });
 
 const Book = mongoose.model("Bookmodel", Bookschema);
 
 module.exports = Book;
-module.exports.coverImageBasePath=this.coverImageBasePath;
+module.exports.coverImageBasePath = this.coverImageBasePath;

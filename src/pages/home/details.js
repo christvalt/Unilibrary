@@ -68,11 +68,6 @@ function Details(props) {
       );
   };
 
-  /*  axios.all([req1(), req2()])
-  .then(axios.spread(function (acct, perms) {
-    // Both requests are now complete
-})); */
-
   return (
     <React.Fragment>
       <section class="uk-section-small">

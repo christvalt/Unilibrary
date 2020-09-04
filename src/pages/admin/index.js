@@ -137,16 +137,34 @@ function Admin() {
                   data-uk-icon="icon: thumbnails"
                   class="uk-margin-small-right"
                 ></span>
-                Templates
+                Books
               </a>
               <ul class="uk-nav-sub">
                 <li>
-                  <a
-                    title="Article"
-                    href="https://zzseba78.github.io/Kick-Off/article.html"
-                  >
-                    Article
-                  </a>
+                  <Link class="" to="/addBook">
+                    Add Book
+                  </Link>
+                </li>
+
+                <li>
+                  <Link class="" to="/listBook">
+                    List Book
+                  </Link>
+                </li>
+                <li>
+                  <Link class="" to="/updateBook">
+                    Update Book
+                  </Link>
+                </li>
+                <li>
+                  <Link class="" to="/deleteBook">
+                    Delete Book
+                  </Link>
+                </li>
+                <li>
+                  <Link class="" to="/readBook">
+                    Read Book
+                  </Link>
                 </li>
                 <li>
                   <a
@@ -158,14 +176,32 @@ function Admin() {
                 </li>
               </ul>
             </li>
-            <li>
+
+            <li class="uk-parent">
               <a href="#">
                 <span
-                  data-uk-icon="icon: album"
+                  data-uk-icon="icon: thumbnails"
                   class="uk-margin-small-right"
                 ></span>
-                Albums
+                Boorows
               </a>
+              <ul class="uk-nav-sub">
+                <li>
+                  <Link class="" to="/listBoorows">
+                    List Boorows
+                  </Link>
+                </li>
+                <li>
+                  <Link class="" to="/allBoorowNotReturn">
+                    Allborrow not returned
+                  </Link>
+                </li>
+                <li>
+                  <Link class="" to="/borowByUserNotreturned">
+                    BorrowByUserNotreturned
+                  </Link>
+                </li>
+              </ul>
             </li>
           </ul>
           <div class="left-content-box uk-margin-top">
