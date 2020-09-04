@@ -6,19 +6,20 @@ function Details(props) {
   const [data, setDate] = useState([]);
   const [loading, setLoading] = useState(true);
   const [show, setShow] = useState(false);
-//for borrow
-const [userId, setuserId] = useState("");
-const [bookId, setbokId] = useState("");
-const [username, setusername] = useState("");
-const [error, setError] = useState("");
-const [success, setSuccess] = useState("");
+  //for borrow
+  const [userId, setuserId] = useState("");
+  const [bookId, setbokId] = useState("");
+  const [username, setusername] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
-
-
-
+  const [datas, setDatas] = useState("");
 
   useEffect(() => {
-   
+    let response = localStorage.getItem("login");
+    let final = JSON.parse(response);
+    setDatas(final);
+    console.log(datas);
     axios
       .get("http://localhost:5000/BookRoute/books/" + props.match.params.id)
       .then(
@@ -33,43 +34,41 @@ const [success, setSuccess] = useState("");
       );
   }, []);
 
+  const borrowBook = () => {
+    //dichiaration for the borrow action
+    //const [data2, setDate] = useState([]);
 
+    var data2 = qs.stringify({
+      userId: datas.user._id,
+      bookId: props.match.params.id,
+      boorowingdate: new Date(),
+      returningdate: new Date(),
+    });
 
-  const borrowBook=()=>{    
-//dichiaration for the borrow action 
-//const [data2, setDate] = useState([]);
+    const config = {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    };
 
-  var data2 = qs.stringify({
-    userId: userId,
-    bookId: bookId,
-    username:username,
-  });
-
-  const config = {
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
+    axios
+      .post("http://localhost:5000/borrow/users/:userId/books", data2, config)
+      .then(
+        (response) => {
+          console.log(response);
+          setLoading(false);
+          setSuccess(response.data2);
+          console.log("success", success);
+        },
+        (error) => {
+          console.log(error);
+          setLoading(false);
+          setError(error);
+        }
+      );
   };
 
-   axios
-    .post("http://localhost:5000/borrow/users/:userId/books", data2, config)
-    .then(
-      (response) => {
-        console.log(response);
-        setLoading(false);
-        setSuccess(response.data2);
-        console.log("success", success);
-      },
-      (error) => {
-        console.log(error);
-        setLoading(false);
-        setError(error);
-      }
-    );
-
-  }
-
-/*  axios.all([req1(), req2()])
+  /*  axios.all([req1(), req2()])
   .then(axios.spread(function (acct, perms) {
     // Both requests are now complete
 })); */
@@ -107,7 +106,7 @@ const [success, setSuccess] = useState("");
                   </b>
                   <b>
                     <p className="uk-text-left">
-                      Author : {!loading ? data.authors: "loading..."}
+                      Author : {!loading ? data.authors : "loading..."}
                     </p>
                   </b>
                   <b>
@@ -143,9 +142,14 @@ const [success, setSuccess] = useState("");
                         />
                       </div>
                     </div>
-                    <a  onClick={() => {
-                  borrowBook();
-                }}class="uk-button uk-button-primary">Rent</a>
+                    <a
+                      onClick={() => {
+                        borrowBook();
+                      }}
+                      class="uk-button uk-button-primary"
+                    >
+                      Rent
+                    </a>
                   </form>
                 </div>
               )}
