@@ -39,7 +39,7 @@ function Details(props) {
     //const [data2, setDate] = useState([]);
 
     var data2 = qs.stringify({
-      userId: datas.user._id,
+      // userId: datas.user._id,
       bookId: props.match.params.id,
       boorowingdate: new Date(),
       returningdate: new Date(),
@@ -114,7 +114,7 @@ function Details(props) {
                     class="uk-button uk-button-primary"
                     onClick={() => setShow(!show)}
                   >
-                    Rent this book
+                    Boorrow book
                   </button>
                 </div>
               </div>
@@ -143,8 +143,27 @@ function Details(props) {
                       }}
                       class="uk-button uk-button-primary"
                     >
-                      Rent
+                      Boorrow
                     </a>
+                    {loading && (
+                      <div class="uk-margin">
+                        <div uk-spinner="ratio: 3"></div>
+                      </div>
+                    )}
+                    {error && (
+                      <div class="uk-margin">
+                        <a class="uk-text-danger" href="/home">
+                          {error}
+                        </a>
+                      </div>
+                    )}
+                    {!!success && (
+                      <div class="uk-margin">
+                        <a class="uk-text-success" href="/home">
+                          {success.message}, clikc here to login
+                        </a>
+                      </div>
+                    )}
                   </form>
                 </div>
               )}

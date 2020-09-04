@@ -203,7 +203,7 @@ function Addbook() {
             )}
             {!!success && (
               <div class="uk-margin">
-                <a class="uk-text-success" href="/signin">
+                <a class="uk-text-success" href="/admin">
                   {success.message}, add seccesfully
                 </a>
               </div>
