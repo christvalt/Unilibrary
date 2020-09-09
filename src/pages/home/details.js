@@ -80,9 +80,6 @@ function Details(props) {
                 </a>
               </h1>
 
-              <p class="uk-article-meta">
-                {!loading ? data.publishedDate : "today"}
-              </p>
               <div class="uk-margin-top" data-uk-grid>
                 <div class="uk-width-1-3@m">
                   <img
@@ -99,6 +96,12 @@ function Details(props) {
                       Page count : {!loading ? data.pageCount : 0}
                     </p>
                   </b>
+                  <b>
+                    <p class="uk-article-meta">
+                      {!loading ? data.publishedDate : "today"}
+                    </p>
+                  </b>
+
                   <b>
                     <p className="uk-text-left">
                       Author : {!loading ? data.authors : "loading..."}

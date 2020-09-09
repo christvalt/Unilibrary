@@ -11,10 +11,10 @@ var Bookschema = new Schema({
     type: Number,
     required: true,
   },
-  // publishedDate: {
-  //   type: Date,
-  //   required: true,
-  // },
+  publishedDate: {
+    type: Date,
+    required: true,
+  },
   authors: {
     type: String,
     required: true,
@@ -30,10 +30,10 @@ var Bookschema = new Schema({
     enum: ["Available", "Maintenance", "Loaned", "Reserved"],
     default: "Maintenance",
   },
-  // coverImageName: {
-  //   type: String,
-  //   required: true,
-  // },
+  coverImage: {
+    type: String,
+    required: true,
+  },
   //  coverImageType: {
   //    type: String,
   //    required: true,

@@ -32,9 +32,8 @@ class Home extends Component {
     };
 
     this.state2 = {
-      Books: [],
+      Book: [],
     };
-
   }
   getBooksData() {
     axios
@@ -55,24 +54,23 @@ class Home extends Component {
     this.findbook();
     //this. findBooksData();
   }
-/**
+  /**
 @description:find one book by a user
 */
-   findbook() {
+  findbook() {
     axios
       .get(`http://localhost:5000/BookRoute/books/:title`, {})
       .then((res) => {
         const data = res.data;
         console.log(data);
-        this.setState2({
-          Books: data,
+        this.setState({
+          Book: data,
         });
       })
       .catch((error) => {
         console.log(error);
       });
   }
-
 
   render() {
     return (
@@ -133,6 +131,9 @@ class Home extends Component {
                   <form class="uk-search uk-search-default uk-search-large">
                     <span uk-search-icon></span>
                     <input
+                      onChange={(e) => {
+                        this.state2.Book(e.target.value);
+                      }}
                       class="uk-search-input uk-form-large uk-form-width-small"
                       style={{ fontSize: "14px" }}
                       type="search"

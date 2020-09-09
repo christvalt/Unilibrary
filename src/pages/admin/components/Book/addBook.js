@@ -10,12 +10,14 @@ import qs from "qs";
 
 function Addbook() {
   const [data, setDate] = useState([]);
+  const [data2, setDate2] = useState([]);
   const [title, settitle] = useState("");
   const [authors, setauthors] = useState("");
   const [pageCount, setpageCount] = useState("");
   const [status, setstatus] = useState("");
   const [longDescription, setlongDescription] = useState("");
   const [publishedDate, setpublishedDate] = useState("");
+  const [coverImage, setcoverImage] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -33,6 +35,7 @@ function Addbook() {
       pageCount: pageCount,
       status: status,
       longDescription: longDescription,
+      publishedDate: publishedDate,
     });
 
     const config = {
@@ -54,6 +57,32 @@ function Addbook() {
         setError(error);
       }
     );
+  };
+  const submitImage = () => {
+    let data2 = qs.stringify({
+      coverImage: coverImage,
+    });
+
+    const config = {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    };
+    axios
+      .post("http://localhost:5000/test/create/image_book", data2, config)
+      .then(
+        (response) => {
+          console.log(response);
+          setLoading(false);
+          setSuccess(response.data2);
+          console.log("success", success);
+        },
+        (error) => {
+          console.log(error);
+          setLoading(false);
+          setError(error);
+        }
+      );
   };
 
   return (
@@ -165,24 +194,45 @@ function Addbook() {
                 ></textarea>
               </div>
 
-              {show && (
-                <div class="uk-margin">
-                  <p>publishedDate</p>
-                  <label class="uk-form-label" for="form-stacked-text"></label>
-                  <div class="uk-form-controls">
-                    <input
-                      onChange={(e) => {
-                        setpublishedDate(e.target.value);
-                      }}
-                      class="uk-input uk-form-width-medium"
-                      id="form-stacked-text"
-                      type="date"
-                      placeholder="publishedDate"
-                      min={Date()}
-                    />
-                  </div>
+              <div class="uk-margin">
+                <p>publishedDate</p>
+                <label class="uk-form-label" for="form-stacked-text"></label>
+                <div class="uk-form-controls">
+                  <input
+                    onChange={(e) => {
+                      setpublishedDate(e.target.value);
+                    }}
+                    class="uk-input uk-form-width-medium"
+                    id="form-stacked-text"
+                    type="date"
+                    placeholder="publishedDate"
+                    min={Date()}
+                  />
                 </div>
-              )}
+              </div>
+
+              {/* <div class="js-upload" uk-form-custom>
+                <input
+                  type="file"
+                  multiple
+                  onChange={(e) => {
+                    setcoverImage(e.target.value);
+                  }}
+                  onClick={() => {
+                    submitImage();
+                  }}
+                />
+                <button
+                  onClick={() => {
+                    submitImage();
+                  }}
+                  class="uk-button uk-button-default"
+                  type="button"
+                  tabindex="-1"
+                >
+                  Select
+                </button>
+              </div> */}
               <a
                 onClick={() => {
                   submit();
@@ -196,7 +246,7 @@ function Addbook() {
             </form>
             {error && (
               <div class="uk-margin">
-                <a class="uk-text-danger" href="/signin">
+                <a class="uk-text-danger" href="/Addbook">
                   {error}
                 </a>
               </div>

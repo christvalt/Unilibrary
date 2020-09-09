@@ -96,6 +96,15 @@ function Header(props) {
                 </div>
               ) : (
                 <div class="uk-margin">
+                  <Link class="" to="/loginAd">
+                    <a
+                      class="uk-text-emphasis uk-text-bold uk-button uk-button-defaultbutton-border"
+                      href="#"
+                    >
+                      Admin
+                    </a>
+                  </Link>
+
                   <Link class="" to="/signin">
                     <a
                       class="uk-text-emphasis uk-text-bold uk-button uk-button-defaultbutton-border"

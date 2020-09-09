@@ -8,6 +8,9 @@ import Footer from "../components/footer";
 import Details from "../pages/home/details";
 import SignIn from "../pages/auth/signIn";
 import SignUp from "../pages/auth/signup";
+import LoginAd from "../pages/auth/loginAd";
+import SignUpAdmin from "../pages/auth/signUpAdmin";
+
 import Admin from "../pages/admin/index";
 import AddBook from "../pages/admin/components/Book/addBook";
 import UpdateBook from "../pages/admin/components/Book/updateBook";
@@ -32,6 +35,8 @@ const Router = (props) => {
       <Route path="/signin" component={SignIn} />
       <Route path="/signup" component={SignUp} />
       <Route path="/admin" component={Admin} />
+      <Route path="/loginAd" component={LoginAd} />
+      <Route path="/signUpAdmin" component={SignUpAdmin} />
       <Route path="/addBook" component={AddBook} />
       <Route path="/updateBook" component={UpdateBook} />
       <Route path="/readBook" component={readBook} />

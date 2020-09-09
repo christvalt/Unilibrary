@@ -16,6 +16,7 @@ function SignIn() {
   //loads data on start
   useEffect(() => {}, []);
   const history = useHistory();
+
   const sumit = () => {
     let data = qs.stringify({
       username: username,
@@ -95,5 +96,3 @@ function SignIn() {
 }
 
 export default SignIn;
-
-

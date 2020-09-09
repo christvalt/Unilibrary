@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 var multer = require("multer");
-var cors = require('cors')
+var cors = require("cors");
 
 //const path = require("path");
 //need to delete file
@@ -16,6 +16,7 @@ var upload = multer({ dest: "uploads/" });
 
 //const users = require("./src/routes/api/users");
 const AuthRoute = require("./src/routes/auth/authroute");
+const AdminRoute = require("./src/routes/auth/admin");
 const BookRoute = require("./src/routes/book/bookroutes");
 const pro = require("./src/routes/uploadroute/profile");
 const u = require("./src/routes/uploadroute/u");
@@ -30,9 +31,8 @@ var multer = require("multer");
 const parser = require("./src/middlleware/routing");
 var upload = multer({ dest: "public/" });
 
-
 // Bodyparser middleware
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Connect to MongoDB
 mongoose
@@ -46,6 +46,7 @@ mongoose
 
 app.use(cors());
 app.use("/AuthRoute", AuthRoute);
+app.use("/AdminRoute", AdminRoute);
 app.use("/BookRoute", BookRoute);
 app.use("/profiles", pro);
 app.use("/test", u);
