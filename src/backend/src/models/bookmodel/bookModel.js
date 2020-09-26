@@ -30,6 +30,15 @@ var Bookschema = new Schema({
     enum: ["Available", "Maintenance", "Loaned", "Reserved"],
     default: "Maintenance",
   },
+
+  quantity: {
+    type: Number,
+    required: false,
+  },
+  waitingList: {
+    type: Array,
+    required: true,
+  },
   coverImage: {
     type: String,
     required: true,

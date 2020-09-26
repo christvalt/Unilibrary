@@ -10,6 +10,10 @@ import SignIn from "../pages/auth/signIn";
 import SignUp from "../pages/auth/signup";
 import LoginAd from "../pages/auth/loginAd";
 import SignUpAdmin from "../pages/auth/signUpAdmin";
+import Mainchat from "../pages/chat/mainchat";
+import BottomBar from "../pages/chat/BottomBar";
+
+import Config from "../pages/chat/config";
 
 import Admin from "../pages/admin/index";
 import AddBook from "../pages/admin/components/Book/addBook";
@@ -22,8 +26,11 @@ import AllBoorowNotReturn from "../pages/admin/components/boorow/allBoorowNotRet
 import BorowByUserNotreturned from "../pages/admin/components/boorow/borowByUserNotreturned";
 
 import Join from "../components/Join/Join";
+import Join2 from "../components/Join/join2";
 import Chat from "../components/Chat/Chat";
+import Chat2 from "../components/Chat/chat2";
 import Categories from "../components/categorie";
+import IndexChat from "../components/indexChat";
 
 //import DetailRead from "../pages/home/DetailRead";
 
@@ -43,13 +50,20 @@ const Router = (props) => {
       <Route path="/listBook" component={ListBook} />
       <Route path="/deleteBook" component={DeleteBook} />
       <Route path="/listBoorows" component={ListBoorows} />
+      <Route path="/indexChat" component={IndexChat} />
       <Route path="/allBoorowNotReturn" component={AllBoorowNotReturn} />
+      <Route path="/mainchat" component={Mainchat} />
+      <Route path="/BottomBar" component={BottomBar} />
+      <Route path="/config" component={Config} />
+
       <Route
         path="/borowByUserNotreturned"
         component={BorowByUserNotreturned}
       />
       <Route path="/join" component={Join} />
+      <Route path="/join2" component={Join2} />
       <Route path="/Chat" component={Chat} />
+      <Route path="/chat2" component={Chat2} />
       <Route path="/Categories" component={Categories} />
     </Switch>
   );
