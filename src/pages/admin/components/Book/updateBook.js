@@ -8,152 +8,164 @@ import {
 import axios from "axios";
 import qs from "qs";
 
-
-function Updatebook () {
-
-
-  const [data, setDate] = useState([]);
-  const [id, setid] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-  const [show, setShow] = useState(false);
-  
-
-  //console.log("testdata", data);
-  //loads data on start
-  useEffect(() => {}, []);
-  const history = useHistory();
-
-  
-
-  const submit = () => {
-
-    let data = qs.stringify({
- 
-      id:id,
-    });
-
-    const config = {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    };
-
-    axios.put("http://localhost:5000/BookRoute/books/:id", data, config).then(
-      (response) => {
-        console.log(response);
-        setLoading(false);
-        setSuccess(response.data);
-        console.log("success", success);
-      },
-      (error) => {
-        console.log(error);
-        setLoading(false);
-        setError(error);
-      }
-    );
+const UpdateBook = () => {
+  const initialBookState = {
+    id: null,
+    title: "",
+    description: "",
+    published: false,
   };
 
+  const [currentBook, setCurrentBook] = useState(initialBookState);
+  const [message, setMessage] = useState("");
 
+  const getBook = (id) => {
+    axios
+      .get("http://localhost:5000/BookRoute/books/id" + id)
+      .then((response) => {
+        setCurrentBook(response.data);
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
-return (
+  useEffect(() => {
+    getBook(props.match.params.id);
+  }, [props.match.params.id]);
 
-  <div>
-    <section class="uk-sectio uk-section-large">
-        <div class="uk-container">
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setCurrentBook({ ...currentBook, [name]: value });
+  };
 
-          <h2 >Update information of your selected book</h2>
-          <div
-            class="uk-child-width-1-2@m  uk-flex uk-flex-center"
-            data-uk-grid
-          >
-            <form class="uk-form-stacked">
-              <div class="uk-margin">
-                <div class="uk-form-controls">
-                  <input
-                   onChange={(e) => {
-                    setid(e.target.value);
-                  }}
-                 
-                    class="uk-input"
-                    id="form-stacked-text"
-                    type="title"
-                    placeholder="book id"
-                  />
-                </div>
-              </div>
+  const updatePublished = (status) => {
+    var data = {
+      // il manque le status du livre
+      id: currentBook.id,
+      title: currentBook.title,
+      description: currentBook.description,
+      published: status,
+      pageCount: currentBook.pageCount,
+      longDescription: currentBook.longDescription,
+      publishedDate: currentBook.publishedDate,
+      coverImage: currentBook.coverImage,
+    };
 
-              
-              <a
-                 onClick={() => {
-                  submit();
-                }}
-             
-                class="uk-button uk-button-primary"
-              >
-                Update book
-              </a>
+    axios
+      .update("http://localhost:5000/BookRoute/books/id", currentBook.id, data)
+      .then((response) => {
+        setCurrentBook({ ...currentBook, published: status });
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
-              <div class="uk-margin"></div>
-              
-            </form>
+  const UpdateBook = () => {
+    axios
+      .update(
+        "http://localhost:5000/BookRoute/books/id",
+        currentBook.id,
+        currentBook
+      )
+      .then((response) => {
+        console.log(response.data);
+        setMessage("The book was updated successfully!");
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
-          </div>
-        </div>
-      </section>
-      <section class="uk-section-small">
-        <div class="uk-container">
-          <div class="uk-grid-medium" data-uk-grid>
-            <div class="uk-width-1-1@m">
-              <h1 class="uk-article-title">
-                <a class="uk-link-reset" href="">
-                  {!loading ? data.title : "loading..."}
-                </a>
-              </h1>
+  const deleteBook = () => {
+    axios
+      .remove(currentBook.id)
+      .then((response) => {
+        console.log(response.data);
+        props.history.push("/tutorials");
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
-              <p class="uk-article-meta">
-                {!loading ? data.publishedDate : "today"}
-              </p>
-              <div class="uk-margin-top" data-uk-grid>
-                <div class="uk-width-1-3@m">
-                  <img
-                    src="https://source.unsplash.com/user/erondu/1600x900"
-                    alt=""
-                  />
-                </div>
-                <div class="uk-width-2-3@m uk-flex-left">
-                  <p className="uk-text-left">
-                    {!loading ? data.longDescription : "loading..."}
-                  </p>
-                  <b>
-                    <p className="uk-text-left">
-                      Page count : {!loading ? data.pageCount : 0}
-                    </p>
-                  </b>
-                  <b>
-                    <p className="uk-text-left">
-                      Author : {!loading ? data.authors: "loading..."}
-                    </p>
-                  </b>
-                  <b>
-                    <p className="uk-text-left uk-text-success">
-                      Book status : {!loading ? data.status : 0}
-                    </p>
-                  </b>
-
-               
-                </div>
-              </div>
+  return (
+    <div>
+      {currentBook ? (
+        <div className="edit-form">
+          <h4>Book</h4>
+          <form>
+            <div className="form-group">
+              <label htmlFor="title">Title</label>
+              <input
+                type="text"
+                className="form-control"
+                id="title"
+                name="title"
+                value={currentBook.title}
+                onChange={handleInputChange}
+              />
             </div>
-          </div>
+            <div className="form-group">
+              <label htmlFor="description">Description</label>
+              <input
+                type="text"
+                className="form-control"
+                id="description"
+                name="description"
+                value={currentBook.description}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <label>
+                <strong>Status:</strong>
+              </label>
+              {currentBook.published ? "Published" : "Pending"}
+            </div>
+          </form>
+
+          {currentBook.published ? (
+            <button
+              className="badge badge-primary mr-2"
+              onClick={() => updatePublished(false)}
+            >
+              UnPublish
+            </button>
+          ) : (
+            <button
+              className="badge badge-primary mr-2"
+              onClick={() => updatePublished(true)}
+            >
+              Publish
+            </button>
+          )}
+
+          <button className="badge badge-danger mr-2" onClick={deleteBook}>
+            Delete
+          </button>
+
+          <button
+            type="submit"
+            className="badge badge-success"
+            onClick={UpdateBook}
+          >
+            Update
+          </button>
+          <p>{message}</p>
         </div>
-      </section>
-      
-</div>
-  
-);
-
+      ) : (
+        <div>
+          <br />
+          <p>Please click on a book...</p>
+        </div>
+      )}
+    </div>
+  );
 };
-export default Updatebook
 
+export default UpdateBook;
