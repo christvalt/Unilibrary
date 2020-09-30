@@ -6,33 +6,11 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { render } from "@testing-library/react";
 
 class Home extends Component {
-  /**  .then(res => {
-          const book = res.data;
-          setbook({ book });
-        //console.log(res);
-      }) */
-  //a utiliser apres
-  /*
-     const  [book, setbook] = useState([]);
-     //loads data on start
-  
-     useEffect(()=>{
-  
-      axios.get('http://localhost:5000/BookRoute/books') 
-      .then((responce)=>{
-        setbook({book:responce})
-        //console.log(result)
-      })
-     },[]) */
-
   constructor(props) {
     super(props);
     this.state = {
       Books: [],
-    };
-
-    this.state2 = {
-      Book: [],
+      Bookfind: [],
     };
   }
   getBooksData() {
@@ -51,26 +29,29 @@ class Home extends Component {
   }
   componentDidMount() {
     this.getBooksData();
-    this.findbook();
-    //this. findBooksData();
   }
   /**
 @description:find one book by a user
 */
-  findbook() {
+  findbook(id) {
     axios
-      .get(`http://localhost:5000/BookRoute/books/:title`, {})
+      .get(`http://localhost:5000/BookRoute/books/:` + id)
       .then((res) => {
         const data = res.data;
         console.log(data);
         this.setState({
-          Book: data,
+          Bookfind: data,
         });
       })
       .catch((error) => {
         console.log(error);
       });
   }
+
+  _handleKeyDown = (e) => {
+    e.preventDefault();
+    this.findbook(e.target.value);
+  };
 
   render() {
     return (
@@ -131,15 +112,39 @@ class Home extends Component {
                   <form class="uk-search uk-search-default uk-search-large">
                     <span uk-search-icon></span>
                     <input
-                      onChange={(e) => {
-                        this.state2.Book(e.target.value);
-                      }}
+                      // onChange={(e) => {
+                      //   this.state2.Book(e.target.value);
+                      // }}
                       class="uk-search-input uk-form-large uk-form-width-small"
                       style={{ fontSize: "14px" }}
                       type="search"
                       placeholder="Type something"
-                      //onKeyPress={event => event.key === 'Enter' ? findbook(event) : null}
+                      onChange={this._handleKeyDown}
                     />
+                    <div class="uk-text-center" data-uk-grid>
+                      {this.state.Bookfind.length ? (
+                        this.state.Bookfind.map((i) => (
+                          <div class="uk-width-1-4@m">
+                            <Link to={"/book/" + i._id}>
+                              <div
+                                class="uk-inline uk-transition-toggle"
+                                tabindex="0"
+                              >
+                                <img
+                                  src={"http://localhost:5000/" + i.coverImage}
+                                  alt=""
+                                />
+                                <div class="uk-transition-slide-bottom uk-overlay uk-overlay-primary uk-position-bottom">
+                                  <p class="uk-h4">{i.title}</p>
+                                </div>
+                              </div>
+                            </Link>
+                          </div>
+                        ))
+                      ) : (
+                        <p>not book found</p>
+                      )}
+                    </div>
                   </form>
                 </div>
               </div>
@@ -153,7 +158,7 @@ class Home extends Component {
               Latest Books
             </h2>
             <h4 class="uk-text-meta uk-margin-medium-bottom">
-              Select the latest book found in our B
+              Select the latest book found in our Bibotech
             </h4>
 
             <div class="uk-text-center" data-uk-grid>
@@ -161,8 +166,12 @@ class Home extends Component {
                 <div class="uk-width-1-4@m">
                   <Link to={"/book/" + i._id}>
                     <div class="uk-inline uk-transition-toggle" tabindex="0">
-                      <img src="https://source.unsplash.com/random" alt="" />
-                      <div class="uk-transition-slide-bottom uk-overlay uk-overlay-primary uk-position-bottom">
+                      <img
+                        src={"http://localhost:5000/" + i.coverImage}
+                        alt=""
+                        style={{ width: "250px", height: "350px" }}
+                      />
+                      <div class="uk-transition-bottom uk-overlay uk-overlay-primary uk-position-bottom ">
                         <p class="uk-h4">{i.title}</p>
                       </div>
                     </div>

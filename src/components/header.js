@@ -96,14 +96,38 @@ function Header(props) {
                 </div>
               ) : (
                 <div class="uk-margin">
-                  <Link class="" to="/loginAd">
-                    <a
-                      class="uk-text-emphasis uk-text-bold uk-button uk-button-defaultbutton-border"
-                      href="#"
-                    >
-                      Admin
-                    </a>
-                  </Link>
+                  <button
+                    class="uk-button uk-button-default"
+                    type="button"
+                    href="/loginAd"
+                  >
+                    Dasboard
+                  </button>
+
+                  <div uk-dropdown="animation: uk-animation-slide-top-small; duration: 1000">
+                    <ul uk-list className="uk-nav uk-dropdown-nav">
+                      <li class="uk-active">
+                        <Link class="" to="/loginAd">
+                          <a
+                            class="uk-text-emphasis uk-text-bold uk-button uk-button-defaultbutton-border"
+                            href="#"
+                          >
+                            Admin
+                          </a>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link class="" to="/loginAd">
+                          <a
+                            class="uk-text-emphasis uk-text-bold uk-button uk-button-defaultbutton-border"
+                            href="#"
+                          >
+                            sign in
+                          </a>
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
 
                   <Link class="" to="/signin">
                     <a

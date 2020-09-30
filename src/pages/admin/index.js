@@ -1,7 +1,35 @@
 import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import ListBook from "./components/Book/listBook";
+import updateBook from "./components/Book/updateBook";
+import AddBook from "./components/Book/addBook";
+import ListBoorows from "./components/boorow/listBoorows";
+import AllBoorowNotReturn from "./components/boorow/allBoorowNotReturn";
+import BorowByUserNotreturned from "./components/boorow/borowByUserNotreturned";
 
 function Admin() {
+  const [page, setPage] = useState(0);
+  const renderSwitch = () => {
+    switch (page) {
+      case 1:
+        return <ListBook />;
+      case 2:
+        return <updateBook />;
+      case 3:
+        return <AddBook />;
+      case 4:
+        return <ListBoorows />;
+      case 5:
+        return <AllBoorowNotReturn />;
+      case 6:
+        return <BorowByUserNotreturned />;
+
+      default:
+        return <div></div>;
+    }
+  };
+
   return (
     <React.Fragment>
       <header id="top-head" class="uk-position-fixed">
@@ -141,31 +169,27 @@ function Admin() {
               </a>
               <ul class="uk-nav-sub">
                 <li>
-                  <Link class="" to="/addBook">
+                  <a
+                    class=""
+                    onClick={() => {
+                      setPage(3);
+                    }}
+                  >
                     Add Book
-                  </Link>
+                  </a>
                 </li>
 
                 <li>
-                  <Link class="" to="/listBook">
+                  <a
+                    class=""
+                    onClick={() => {
+                      setPage(1);
+                    }}
+                  >
                     List Book
-                  </Link>
+                  </a>
                 </li>
-                <li>
-                  <Link class="" to="/updateBook">
-                    Update Book
-                  </Link>
-                </li>
-                <li>
-                  <Link class="" to="/deleteBook">
-                    Delete Book
-                  </Link>
-                </li>
-                <li>
-                  <Link class="" to="/readBook">
-                    Read Book
-                  </Link>
-                </li>
+
                 <li>
                   <a
                     title="Album"
@@ -187,19 +211,37 @@ function Admin() {
               </a>
               <ul class="uk-nav-sub">
                 <li>
-                  <Link class="" to="/listBoorows">
+                  <a
+                    class=""
+                    class=""
+                    onClick={() => {
+                      setPage(4);
+                    }}
+                  >
                     List Boorows
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link class="" to="/allBoorowNotReturn">
+                  <a
+                    class=""
+                    class=""
+                    onClick={() => {
+                      setPage(5);
+                    }}
+                  >
                     Allborrow not returned
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link class="" to="/borowByUserNotreturned">
+                  <a
+                    class=""
+                    class=""
+                    onClick={() => {
+                      setPage(6);
+                    }}
+                  >
                     BorrowByUserNotreturned
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </li>
@@ -281,88 +323,7 @@ function Admin() {
 
       <div id="content" data-uk-height-viewport="expand: true">
         <div class="uk-container uk-container-expand">
-          <div
-            class="uk-grid uk-grid-divider uk-grid-medium uk-child-width-1-2 uk-child-width-1-4@l uk-child-width-1-5@xl"
-            data-uk-grid
-          >
-            <div>
-              <span class="uk-text-small">
-                <span
-                  data-uk-icon="icon:users"
-                  class="uk-margin-small-right uk-text-primary"
-                ></span>
-                New Users
-              </span>
-              <h1 class="uk-heading-primary uk-margin-remove  uk-text-primary">
-                2.134
-              </h1>
-              <div class="uk-text-small">
-                <span class="uk-text-success" data-uk-icon="icon: triangle-up">
-                  15%
-                </span>{" "}
-                more than last week.
-              </div>
-            </div>
-            <div>
-              <span class="uk-text-small">
-                <span
-                  data-uk-icon="icon:social"
-                  class="uk-margin-small-right uk-text-primary"
-                ></span>
-                Social Media
-              </span>
-              <h1 class="uk-heading-primary uk-margin-remove uk-text-primary">
-                8.490
-              </h1>
-              <div class="uk-text-small">
-                <span
-                  class="uk-text-warning"
-                  data-uk-icon="icon: triangle-down"
-                >
-                  -15%
-                </span>{" "}
-                less than last week.
-              </div>
-            </div>
-            <div>
-              <span class="uk-text-small">
-                <span
-                  data-uk-icon="icon:clock"
-                  class="uk-margin-small-right uk-text-primary"
-                ></span>
-                Traffic hours
-              </span>
-              <h1 class="uk-heading-primary uk-margin-remove uk-text-primary">
-                12.00<small class="uk-text-small">PM</small>
-              </h1>
-              <div class="uk-text-small">
-                <span class="uk-text-success" data-uk-icon="icon: triangle-up">
-                  {" "}
-                  19%
-                </span>{" "}
-                more than last week.
-              </div>
-            </div>
-            <div>
-              <span class="uk-text-small">
-                <span
-                  data-uk-icon="icon:search"
-                  class="uk-margin-small-right uk-text-primary"
-                ></span>
-                Week Search
-              </span>
-              <h1 class="uk-heading-primary uk-margin-remove uk-text-primary">
-                9.543
-              </h1>
-              <div class="uk-text-small">
-                <span class="uk-text-danger" data-uk-icon="icon: triangle-down">
-                  {" "}
-                  -23%
-                </span>{" "}
-                less than last week.
-              </div>
-            </div>
-          </div>
+          {renderSwitch()}
           <hr />
           <div class="uk-grid uk-grid-medium" data-uk-grid></div>
         </div>

@@ -1,21 +1,19 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-
 var Borrowschema = new Schema({
-
   returned: {
     type: Boolean,
     defaul: false,
   },
-  bookId: {        
-      ref: 'book',
-      type: Schema.Types.ObjectId   
-  },  
-     boorowingdate: {
-      type: Date,
-      required: true,
-     },
+  bookId: {
+    ref: "book",
+    type: Schema.Types.ObjectId,
+  },
+  boorowingdate: {
+    type: Date,
+    required: true,
+  },
   returningdate: {
     type: Date,
     required: true,
@@ -25,18 +23,18 @@ var Borrowschema = new Schema({
     allowNull: false,
   },
   quantity: {
-    type: Number,    
+    type: Number,
   },
   userId: {
-    ref: 'user',
-    type: Schema.Types.ObjectId   
-  }
-  
+    ref: "user",
+    type: Schema.Types.ObjectId,
+  },
+  // waitingList: {
+  //   type: Array,
+  //   defaul: false,
+  // },
 });
 
 const Boorow = mongoose.model("Borrowmodel", Borrowschema);
 
 module.exports = Boorow;
-
-
-

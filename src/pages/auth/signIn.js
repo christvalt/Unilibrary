@@ -34,6 +34,12 @@ function SignIn() {
         localStorage.setItem("login", JSON.stringify(response.data));
         history.push("/");
         window.location.reload();
+        var user = response.data;
+        if (user.user.role == "Admin") {
+          localStorage.setItem("chatId", "adminId");
+        } else {
+          localStorage.setItem("chatId", user.user._id);
+        }
       },
       (error) => {
         console.log(error);
@@ -46,11 +52,11 @@ function SignIn() {
         class="uk-grid-collapse uk-child-width-expand@s uk-text-center uk-margin-large-top"
         uk-grid
       >
-        <div>
+        <div classname="sig">
           <div class="uk-background-muted uk-padding">
-            <div class="uk-grid-item-match  uk-flex-right@m ">
+            <div class="uk-grid-item-match  uk-grid-item-match uk-flex-bold uk-flex-center ">
               <div class="uk-card uk-card-default uk-width-1-3 uk-card-body ">
-                <h1 style={{ color: "#A9A9C9" }} class="uk-padding">
+                <h1 style={{ color: "#8000ff" }} class="uk-padding">
                   {" "}
                   Unilibrary!!
                 </h1>

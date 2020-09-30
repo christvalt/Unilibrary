@@ -1,12 +1,10 @@
 var mongoose = require("mongoose");
 const express = require("express");
-var multer = require("multer");
 const fs = require("fs");
 
 const uploadcontroler = require("../../controllers/uploadcontroler/uploadcontroler");
-const {
-  create_book,
-} = require("../../controllers/bookcontrollers/booksController");
+var bookcontrollers = require("../../controllers/bookcontrollers/booksController");
+//ar tetupload = require("../../controllers/uploadcontroler/testUpload");
 const {
   delete_book,
 } = require("../../controllers/bookcontrollers/booksController");
@@ -15,14 +13,21 @@ const {
 } = require("../../controllers/bookcontrollers/booksController");
 const router = express.Router();
 
-router.post("/create/image_book", function (req, res) {
+router.post("/create/image_book", (req, res) => {
+  console.log("testt");
+  console.log(req.body);
   uploadcontroler.upload(req, res, function (err) {
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were any
+
+    console.log(req.file);
+    // return res.end(req.body.coverImage);
     if (err) {
+      console.log(err);
       return res.end("Error uploading file.");
     }
-    create_book(req, res);
+
+    bookcontrollers.create_book(req, res);
   });
 });
 

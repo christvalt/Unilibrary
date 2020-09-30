@@ -52,19 +52,25 @@ function SignUp() {
       >
         <div>
           <div class="uk-background-muted uk-padding">
-            <div class="uk-grid-item-match uk-flex-center">
+            <div class="uk-grid-item-match uk-flex uk-flex-center">
               <div class="uk-card uk-card-default uk-width-1-3 uk-card-body ">
-                <h1 style={{ color: "#ff8000" }} class="uk-padding">
+                <h1
+                  style={{ color: "#8000ff" }}
+                  class="uk-margin-remove-top uk-text-bold uk-text-center"
+                >
                   {" "}
-                  Unilibrary!!
+                  UniLiBrary!
                 </h1>
-                <p class="uk-text-bold uk-text-center">
-                  <h4>Register in Unilibrary</h4>{" "}
+                <p class="uk-text-bold uk-text-center ">
+                  <h2>Register for Unilibrary</h2>{" "}
                 </p>
                 {/* <p class="uk-text-center"> using unilibrary account </p> <br></br>  */}
                 <br></br>
+
                 <form class="uk-form-stacked">
-                  <div class="uk-margin">
+                  <div class="uk-padding">
+                    {" "}
+                    <br></br>
                     <label
                       class="uk-form-label uk-align-left"
                       for="form-stacked-text"
@@ -99,7 +105,6 @@ function SignUp() {
                         }}
                       />
                     </div>
-
                     <label
                       class="uk-form-label uk-align-left"
                       for="form-stacked-text"
@@ -119,9 +124,6 @@ function SignUp() {
                     </div>
                   </div>
 
-                  <br></br>
-                  <br></br>
-
                   <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
                     <label>
                       <input class="uk-checkbox" type="checkbox" /> Remenber me
@@ -131,7 +133,8 @@ function SignUp() {
                   <br></br>
 
                   <a
-                    onClick={() => {
+                    onCl
+                    ick={() => {
                       submit();
                     }}
                     class="uk-button uk-button-primary uk-width-1-2 uk-margin-small-bottom"

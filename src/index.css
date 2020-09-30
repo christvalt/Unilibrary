@@ -147,3 +147,10 @@ body {
 .background-color-white {
   background-color: #fff !important;
 }
+.tab-header {
+  background-color: #63c5da;
+}
+.table.uk-table.uk-table-hover.uk-table-middle.uk-table-divider {
+  border-collapse: collapse;
+  width: 1%;
+}

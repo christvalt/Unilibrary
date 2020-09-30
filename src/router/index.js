@@ -10,15 +10,10 @@ import SignIn from "../pages/auth/signIn";
 import SignUp from "../pages/auth/signup";
 import LoginAd from "../pages/auth/loginAd";
 import SignUpAdmin from "../pages/auth/signUpAdmin";
-import Mainchat from "../pages/chat/mainchat";
-import BottomBar from "../pages/chat/BottomBar";
-
-import Config from "../pages/chat/config";
 
 import Admin from "../pages/admin/index";
 import AddBook from "../pages/admin/components/Book/addBook";
 import UpdateBook from "../pages/admin/components/Book/updateBook";
-import readBook from "../pages/admin/components/Book/readBook";
 import ListBook from "../pages/admin/components/Book/listBook";
 import DeleteBook from "../pages/admin/components/Book/deleteBook";
 import ListBoorows from "../pages/admin/components/boorow/listBoorows";
@@ -30,7 +25,6 @@ import Join2 from "../components/Join/join2";
 import Chat from "../components/Chat/Chat";
 import Chat2 from "../components/Chat/chat2";
 import Categories from "../components/categorie";
-import IndexChat from "../components/indexChat";
 
 //import DetailRead from "../pages/home/DetailRead";
 
@@ -45,21 +39,14 @@ const Router = (props) => {
       <Route path="/loginAd" component={LoginAd} />
       <Route path="/signUpAdmin" component={SignUpAdmin} />
       <Route path="/addBook" component={AddBook} />
-      <Route path="/updateBook" component={UpdateBook} />
-      <Route path="/readBook" component={readBook} />
+      <Route path="/updateBook/:id" component={UpdateBook} />
+
       <Route path="/listBook" component={ListBook} />
       <Route path="/deleteBook" component={DeleteBook} />
       <Route path="/listBoorows" component={ListBoorows} />
-      <Route path="/indexChat" component={IndexChat} />
-      <Route path="/allBoorowNotReturn" component={AllBoorowNotReturn} />
-      <Route path="/mainchat" component={Mainchat} />
-      <Route path="/BottomBar" component={BottomBar} />
-      <Route path="/config" component={Config} />
 
-      <Route
-        path="/borowByUserNotreturned"
-        component={BorowByUserNotreturned}
-      />
+      <Route path="/allBoorowNotReturn" component={AllBoorowNotReturn} />
+
       <Route path="/join" component={Join} />
       <Route path="/join2" component={Join2} />
       <Route path="/Chat" component={Chat} />

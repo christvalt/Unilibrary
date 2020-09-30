@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import UIkit from "uikit";
 
-export class listBook extends Component {
+export class ListBook extends Component {
   state = {
     Books: [],
     currentBook: null,
@@ -17,10 +19,16 @@ export class listBook extends Component {
 
   handleDelete(id) {
     //const id = this.state.id;
-    axios.delete("http://localhost:5000/BookRoute/books/id", id).then((res) => {
+    axios.delete("http://localhost:5000/BookRoute/books/" + id).then((res) => {
       console.log(res);
       console.log(res.data);
-
+      axios.get("http://localhost:5000/BookRoute/books").then((res) => {
+        const Books = res.data;
+        this.setState({ Books });
+        UIkit.notification(
+          "<span uk-icon='icon: check'></span> Succesfull Delection  "
+        );
+      });
       //const Books = this.state.Books.filter((item) => item.id !== id);
       //this.setState({ Books });
     });
@@ -34,10 +42,10 @@ export class listBook extends Component {
             List of all our present books
           </h1>
 
-          <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
-            <thead>
+          <table class="uk-table uk-table-hover uk-table-middle uk-table-divider uk-table-justify ">
+            <thead className="tab-header" style={{ color: "white" }}>
               <tr>
-                <th class="uk-table-shrink"></th>
+                <th class="uk-table-shrink" style={{ color: "white" }}></th>
                 <th class="uk-table-shrink">id</th>
                 <th>status</th>
                 <th class="uk-width-small">title</th>
@@ -48,7 +56,7 @@ export class listBook extends Component {
                 <th class="uk-table-shrink">actions</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="ant-table-body">
               {this.state.Books.map((book) => (
                 <tr>
                   <td>
@@ -61,34 +69,47 @@ export class listBook extends Component {
                   <td>{book.publishedDate}</td>
                   <td>{book.authors}</td>
                   <td>{book.quantity}</td>
-                  <td>{book.actions}</td>
 
                   <td>
+                    {book.actions}
                     <a
                       className="uk-link-heading"
-                      onClick={(e) => this.handleDelete(book.id, e)}
+                      onClick={() => this.handleDelete(book._id)}
                     >
                       Delete
                     </a>
                     |
-                    <a
+                    <Link
                       className="uk-link-heading"
-                      onClick={(e) => this.handleDelete(book.id, e)}
+                      to={"/updateBook/" + book._id}
                     >
                       Update
-                    </a>
+                    </Link>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+        <ul class="uk-pagination">
+          <li>
+            <a href="#">
+              <span class="uk-margin-small-right" uk-pagination-previous></span>{" "}
+              Previous
+            </a>
+          </li>
+          <li class="uk-margin-auto-left">
+            <a href="#">
+              Next <span class="uk-margin-small-left" uk-pagination-next></span>
+            </a>
+          </li>
+        </ul>
       </section>
     );
   }
 }
 
-export default listBook;
+export default ListBook;
 
 /**import React, { useEffect, useState } from "react";
 

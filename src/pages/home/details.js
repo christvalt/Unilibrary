@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import qs from "qs";
+import UIkit from "uikit";
 
 function Details(props) {
   const [data, setDate] = useState([]);
@@ -39,7 +40,7 @@ function Details(props) {
     //const [data2, setDate] = useState([]);
 
     var data2 = qs.stringify({
-      // userId: datas.user._id,
+      userId: datas.user._id,
       bookId: props.match.params.id,
       boorowingdate: new Date(),
       returningdate: new Date(),
@@ -55,10 +56,14 @@ function Details(props) {
       .post("http://localhost:5000/borrow/users/:userId/books", data2, config)
       .then(
         (response) => {
+          alert(response.data.message);
           console.log(response);
           setLoading(false);
           setSuccess(response.data2);
           console.log("success", success);
+          // UIkit.notification(
+          //   "<span uk-icon='icon: check'></span> Borrow Perform"
+          // );
         },
         (error) => {
           console.log(error);
@@ -83,7 +88,7 @@ function Details(props) {
               <div class="uk-margin-top" data-uk-grid>
                 <div class="uk-width-1-3@m">
                   <img
-                    src="https://source.unsplash.com/user/erondu/1600x900"
+                    src={"http://localhost:5000/" + data.coverImage}
                     alt=""
                   />
                 </div>
@@ -116,6 +121,9 @@ function Details(props) {
                   <button
                     class="uk-button uk-button-primary"
                     onClick={() => setShow(!show)}
+                    onClick={() => {
+                      borrowBook();
+                    }}
                   >
                     Boorrow book
                   </button>
@@ -124,30 +132,6 @@ function Details(props) {
               {show && (
                 <div class="uk-margin-large-top">
                   <form class="uk-form-stacked">
-                    <div class="uk-margin">
-                      <p>Please enter your return date</p>
-                      <label
-                        class="uk-form-label"
-                        for="form-stacked-text"
-                      ></label>
-                      <div class="uk-form-controls">
-                        <input
-                          class="uk-input uk-form-width-medium"
-                          id="form-stacked-text"
-                          type="date"
-                          placeholder="Some text..."
-                          min={Date()}
-                        />
-                      </div>
-                    </div>
-                    <a
-                      onClick={() => {
-                        borrowBook();
-                      }}
-                      class="uk-button uk-button-primary"
-                    >
-                      Boorrow
-                    </a>
                     {loading && (
                       <div class="uk-margin">
                         <div uk-spinner="ratio: 3"></div>
@@ -163,7 +147,7 @@ function Details(props) {
                     {!!success && (
                       <div class="uk-margin">
                         <a class="uk-text-success" href="/home">
-                          {success.message}, clikc here to login
+                          {success.message}, you are effectuetes the borow
                         </a>
                       </div>
                     )}
@@ -244,3 +228,35 @@ function Details(props) {
 }
 
 export default Details;
+
+{
+  /* <div class="uk-margin">
+                      <p>Please enter your return date</p>
+                      <label
+                        class="uk-form-label"
+                        for="form-stacked-text"
+                      ></label>
+                      <div class="uk-form-controls">
+                        <input
+                          class="uk-input uk-form-width-medium"
+                          id="form-stacked-text"
+                          type="date"
+                          placeholder="Some text..."
+                          min={Date()}
+                        />
+                      </div>
+                    </div> */
+}
+{
+  /* <button>
+                      {" "}
+                      <a
+                        onClick={() => {
+                          borrowBook();
+                        }}
+                        class="uk-button uk-button-primary"
+                      >
+                        Boorrow
+                      </a>
+                    </button> */
+}
