@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import ListBook from "./components/Book/listBook";
-import updateBook from "./components/Book/updateBook";
 import AddBook from "./components/Book/addBook";
 import ListBoorows from "./components/boorow/listBoorows";
 import AllBoorowNotReturn from "./components/boorow/allBoorowNotReturn";
@@ -14,8 +13,7 @@ function Admin() {
     switch (page) {
       case 1:
         return <ListBook />;
-      case 2:
-        return <updateBook />;
+
       case 3:
         return <AddBook />;
       case 4:

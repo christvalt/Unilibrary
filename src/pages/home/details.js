@@ -56,7 +56,10 @@ function Details(props) {
       .post("http://localhost:5000/borrow/users/:userId/books", data2, config)
       .then(
         (response) => {
-          alert(response.data.message);
+          if (response.data.message) {
+            alert(response.data.message);
+          }
+
           console.log(response);
           setLoading(false);
           setSuccess(response.data2);
